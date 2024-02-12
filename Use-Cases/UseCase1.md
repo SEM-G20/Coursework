@@ -37,8 +37,6 @@ Organisation requests country population information from world database
 
 ## MAIN SUCCESS SCENARIO
 
-*put here the steps of the scenario from trigger to goal delivery, and any cleanup after*
-
 1. Organisation requests country population information from world database
 
 2. Taking Country Code, Name, Continent, Region, Population and Capital from database
