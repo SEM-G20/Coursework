@@ -1,4 +1,4 @@
-![image](https://github.com/SEM-G20/Coursework/assets/157507841/b64ab466-28bb-422f-bd80-3d8be2eac1fc)# USE CASE: 2 Produce a report with N countries in the world, continent and region, sorted by largest to smallest, where N is provided
+# USE CASE: 2 Produce a report with N countries in the world, continent and region, sorted by largest to smallest, where N is provided
 
 
 ## CHARACTERISTIC INFORMATION
