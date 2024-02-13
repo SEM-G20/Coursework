@@ -1,4 +1,4 @@
-![image](https://github.com/SEM-G20/Coursework/assets/157507841/1320a24c-bb14-44c0-aa78-04dd168801ca)![image](https://github.com/SEM-G20/Coursework/assets/157507841/d8115679-de33-43b7-8849-3ec8d36d64b9)# USE CASE: 7 Produce a report on the population of people living in or out of cities in each continent, region and country.
+# USE CASE: 7 Produce a report on the population of people living in or out of cities in each continent, region and country.
 
 
 ## CHARACTERISTIC INFORMATION
