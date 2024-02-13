@@ -40,7 +40,7 @@ Organisation requests capital city population information from world database
 
 1. Organisation requests capital city population information from world database
 
-2. Taking Name, Country, District and Population from database
+2. Taking Name, Country and Population from database
 
 3. Information sorted
 
