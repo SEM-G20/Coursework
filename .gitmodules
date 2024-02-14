@@ -1,0 +1,3 @@
+[submodule "db/courseworkDB"]
+path = db/courseworkDB
+url = https://github.com/SEM-G20/Coursework/tree/develop/db/courseworkDb
