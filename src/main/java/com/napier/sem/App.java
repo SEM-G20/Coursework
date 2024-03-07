@@ -1,17 +1,40 @@
 package com.napier.sem;
 import java.sql.*;
+import java.util.HashMap;
 
 public class App {
+
+    /**
+     * Main method
+     */
     public static void main(String[] args)
     {
         // Creating  an instance of the App class
         App a = new App();
 
-        // Connecting to the database
+        // Connect to the database
         a.connect();
 
         // Print a message indicating successful connection
         System.out.println("Connected!");
+
+        // Load data from database into the app
+        DataHolder dataHolder = new DataHolder(a.con);
+        dataHolder.loadData();
+
+        // Check sample data if objects are created and connected correctly
+        if(dataHolder.testingRegionAddresses()){
+            if(dataHolder.testingCitiesDataMatching()){
+                System.out.println("Data load successful.");
+            }
+        }
+
+        // Access objects
+        HashMap<String, Continent> continents = dataHolder.getContinents();
+        HashMap<String, Region> regions = dataHolder.getRegions();
+        HashMap<String, Country> countries = dataHolder.getCountries();
+        HashMap<String, District> districts = dataHolder.getDistricts();
+        HashMap<Integer, City> cities = dataHolder.getCities();
 
         // Disconnect from the database
         a.disconnect();
@@ -20,7 +43,9 @@ public class App {
     // Connection object to hold the connection to the database
     private Connection con = null;
 
-    // Method to connect to the database
+    /**
+     * Connect to the database.
+     */
     public void connect() {
         try {
             // Load MySQL JDBC driver
@@ -58,7 +83,9 @@ public class App {
         }
     }
 
-    // Method to disconnect from the database
+    /**
+     * Disconnect from the database.
+     */
     public void disconnect()
     {
         // Check if the connection object is not null
