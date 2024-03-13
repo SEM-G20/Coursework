@@ -1,5 +1,9 @@
 name: A workflow for SEM coursework
-on: push
+on:
+  push:
+    branches:
+      - master
+      - feature/Unit-Testing
 
 jobs:
   UnitTests:
