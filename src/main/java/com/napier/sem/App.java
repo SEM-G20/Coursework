@@ -46,6 +46,7 @@ public class App {
 
     // Connection object to hold the connection to the database
     private Connection con = null;
+    private boolean isConnected = false;
 
     /**
      * Connect to the database.
@@ -70,6 +71,7 @@ public class App {
                                 + "/world?allowPublicKeyRetrieval=true&useSSL=false",
                         "root", "example");
                 System.out.println("Successfully connected");
+                isConnected = true;
                 break;
             } catch (SQLException sqle) {
                 System.out.println("Failed to connect to database attempt " +                                  Integer.toString(i));
@@ -96,6 +98,7 @@ public class App {
             {
                 // Close the database connection
                 con.close();
+                isConnected = false;
             }
             catch (Exception e)
             {
@@ -103,6 +106,11 @@ public class App {
                 System.out.println("Error closing connection to database");
             }
         }
+    }
+
+    public boolean isConnected()
+    {
+        return isConnected;
     }
 
 }

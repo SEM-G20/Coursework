@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class DataHolder {
 
-    private Connection con;
+    private Connection con = null;
     private HashMap<String, Continent> continents = new HashMap<>();
     private HashMap<String, Region> regions = new HashMap<>();
     private HashMap<String, Country> countries = new HashMap<>();
@@ -28,6 +28,9 @@ public class DataHolder {
 
     public DataHolder() {
 
+    }
+    public boolean isConnected(){
+        return con != null;
     }
 
     public HashMap<String, Continent> getContinents(){ return continents; }
