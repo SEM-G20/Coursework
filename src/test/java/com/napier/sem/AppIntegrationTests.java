@@ -3,6 +3,8 @@ package com.napier.sem;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AppIntegrationTests {
@@ -18,7 +20,9 @@ public class AppIntegrationTests {
     }
 
     @Test
-    void testingIntergationTest(){
-        assertEquals(5, 5);
+    void testLoadData(){
+        dataHolder.loadData();
+        Continent continent = dataHolder.getContinents().get("Europe");
+        assertNotNull(continent);
     }
 }
