@@ -99,6 +99,7 @@ public class App {
                 // Close the database connection
                 con.close();
                 isConnected = false;
+                System.out.println("Successfully disconnected");
             }
             catch (Exception e)
             {

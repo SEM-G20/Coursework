@@ -1,5 +1,6 @@
 package com.napier.sem;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +16,11 @@ public class AppIntegrationTests {
         app = new App();
         app.connect("localhost:33060", 30000);
         dataHolder = app.createDataHolder();
+    }
+
+    @AfterAll
+    static void end(){
+        app.disconnect();
     }
 
     @Test
