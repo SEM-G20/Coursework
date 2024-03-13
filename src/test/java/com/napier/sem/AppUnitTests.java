@@ -1,9 +1,9 @@
 package com.napier.sem;
 
-import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-public class AppTest
+public class AppUnitTests
 {
     static App app;
     static DataHolder dataHolder;
@@ -11,12 +11,8 @@ public class AppTest
     @BeforeAll
     static void init()
     {
-        // this block below is what it needs to be done to get valid dataHolder object
-        // !! BUT it doesn't connect to the database
         app = new App();
-        app.connect();
-        dataHolder = app.createDataHolder();
-        dataHolder.loadData();
+        dataHolder = new DataHolder();
     }
 
     @Test
