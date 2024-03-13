@@ -26,6 +26,10 @@ public class DataHolder {
         this.con = con;
     }
 
+    public DataHolder() {
+
+    }
+
     public HashMap<String, Continent> getContinents(){ return continents; }
     public HashMap<String, Region> getRegions(){ return regions; }
     public HashMap<String, Country> getCountries(){ return countries; }
@@ -425,5 +429,334 @@ public class DataHolder {
     private void setMainLanguages(){
         countries.forEach((name, country) -> { country.setMainLanguage(); });
     }
+
+    public ArrayList<Country> countriesByPop()
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.code, country.name, country.Continent, country.region, country.population, city.Name "
+                            + "FROM country "
+                            + "JOIN city ON country.Code = city.Countrycode "
+                            + "WHERE country.capital=city.ID "
+                            + "ORDER BY country.population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.setCode(rset.getString("Country.Code"));
+                country.setName(rset.getString("Country.Name"));
+                country.setContinent(new Continent((rset.getString("Country.Continent"))));
+                country.setRegion(new Region(rset.getString("Country.Region")));
+                country.setPopulation(rset.getInt("Country.Population"));
+                country.setCapital(new City(rset.getString("City.Name")));
+
+                countries.add(country);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |", "Code", "Name", "Continent", "Region", "Population", "Capital"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |", "---", "---", "---", "---", "---", "---"));
+
+            // Loop over all employees in the list
+            for (Country i : countries)
+            {
+                String country_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |",
+                                i.getCode(), i.getName(), i.getContinent().getName(), i.getRegion().getName(), i.getPopulation(), i.getCapital().getName());
+                System.out.println(country_string);
+            }
+
+
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+            return null;
+        }
+    }
+
+    public ArrayList<Country> countriesByPopInContinent(String continent)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.code, country.name, country.Continent, country.region, country.population, city.Name "
+                            + "FROM country "
+                            + "JOIN city ON country.Code = city.Countrycode "
+                            + "WHERE country.capital=city.ID "
+                            + "AND country.Continent='" + continent + "'"
+                            + "ORDER BY country.population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.setCode(rset.getString("Country.Code"));
+                country.setName(rset.getString("Country.Name"));
+                country.setContinent(new Continent((rset.getString("Country.Continent"))));
+                country.setRegion(new Region(rset.getString("Country.Region")));
+                country.setPopulation(rset.getInt("Country.Population"));
+                country.setCapital(new City(rset.getString("City.Name")));
+
+                countries.add(country);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |", "Code", "Name", "Continent", "Region", "Population", "Capital"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |", "---", "---", "---", "---", "---", "---"));
+            // Loop over all employees in the list
+            for (Country i : countries)
+            {
+                String country_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |",
+                                i.getCode(), i.getName(), i.getContinent().getName(), i.getRegion().getName(), i.getPopulation(), i.getCapital().getName());
+                System.out.println(country_string);
+            }
+
+
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+            return null;
+        }
+    }
+
+    public ArrayList<Country> countriesByPopInRegion(String region)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.code, country.name, country.Continent, country.region, country.population, city.Name "
+                            + "FROM country "
+                            + "JOIN city ON country.Code = city.Countrycode "
+                            + "WHERE country.capital=city.ID "
+                            + "AND country.region='" + region + "'"
+                            + "ORDER BY country.population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.setCode(rset.getString("Country.Code"));
+                country.setName(rset.getString("Country.Name"));
+                country.setContinent(new Continent((rset.getString("Country.Continent"))));
+                country.setRegion(new Region(rset.getString("Country.Region")));
+                country.setPopulation(rset.getInt("Country.Population"));
+                country.setCapital(new City(rset.getString("City.Name")));
+
+                countries.add(country);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |", "Code", "Name", "Continent", "Region", "Population", "Capital"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |", "---", "---", "---", "---", "---", "---"));
+            // Loop over all employees in the list
+            for (Country i : countries)
+            {
+                String country_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |",
+                                i.getCode(), i.getName(), i.getContinent().getName(), i.getRegion().getName(), i.getPopulation(), i.getCapital().getName());
+                System.out.println(country_string);
+            }
+
+
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+            return null;
+        }
+    }
+
+    public ArrayList<Country> NcountriesByPop(Integer N)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.code, country.name, country.Continent, country.region, country.population, city.Name "
+                            + "FROM country "
+                            + "JOIN city ON country.Code = city.Countrycode "
+                            + "WHERE country.capital=city.ID "
+                            + "ORDER BY country.population DESC "
+                            + "LIMIT " + N;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.setCode(rset.getString("Country.Code"));
+                country.setName(rset.getString("Country.Name"));
+                country.setContinent(new Continent((rset.getString("Country.Continent"))));
+                country.setRegion(new Region(rset.getString("Country.Region")));
+                country.setPopulation(rset.getInt("Country.Population"));
+                country.setCapital(new City(rset.getString("City.Name")));
+
+                countries.add(country);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |", "Code", "Name", "Continent", "Region", "Population", "Capital"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |", "---", "---", "---", "---", "---", "---"));
+
+            // Loop over all employees in the list
+            for (Country i : countries)
+            {
+                String country_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |",
+                                i.getCode(), i.getName(), i.getContinent().getName(), i.getRegion().getName(), i.getPopulation(), i.getCapital().getName());
+                System.out.println(country_string);
+            }
+
+
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+            return null;
+        }
+    }
+
+    public ArrayList<Country> NcountriesByPopInContinent(String continent, Integer N)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.code, country.name, country.Continent, country.region, country.population, city.Name "
+                            + "FROM country "
+                            + "JOIN city ON country.Code = city.Countrycode "
+                            + "WHERE country.capital=city.ID "
+                            + "AND country.Continent='" + continent + "'"
+                            + "ORDER BY country.population DESC "
+                            + "LIMIT " + N;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.setCode(rset.getString("Country.Code"));
+                country.setName(rset.getString("Country.Name"));
+                country.setContinent(new Continent((rset.getString("Country.Continent"))));
+                country.setRegion(new Region(rset.getString("Country.Region")));
+                country.setPopulation(rset.getInt("Country.Population"));
+                country.setCapital(new City(rset.getString("City.Name")));
+
+                countries.add(country);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |", "Code", "Name", "Continent", "Region", "Population", "Capital"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |", "---", "---", "---", "---", "---", "---"));
+            // Loop over all employees in the list
+            for (Country i : countries)
+            {
+                String country_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |",
+                                i.getCode(), i.getName(), i.getContinent().getName(), i.getRegion().getName(), i.getPopulation(), i.getCapital().getName());
+                System.out.println(country_string);
+            }
+
+
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+            return null;
+        }
+    }
+
+    public ArrayList<Country> NcountriesByPopInRegion(String region, Integer N)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.code, country.name, country.Continent, country.region, country.population, city.Name "
+                            + "FROM country "
+                            + "JOIN city ON country.Code = city.Countrycode "
+                            + "WHERE country.capital=city.ID "
+                            + "AND country.region='" + region + "'"
+                            + "ORDER BY country.population DESC "
+                            + "LIMIT " + N;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.setCode(rset.getString("Country.Code"));
+                country.setName(rset.getString("Country.Name"));
+                country.setContinent(new Continent((rset.getString("Country.Continent"))));
+                country.setRegion(new Region(rset.getString("Country.Region")));
+                country.setPopulation(rset.getInt("Country.Population"));
+                country.setCapital(new City(rset.getString("City.Name")));
+
+                countries.add(country);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |", "Code", "Name", "Continent", "Region", "Population", "Capital"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |", "---", "---", "---", "---", "---", "---"));
+            // Loop over all employees in the list
+            for (Country i : countries)
+            {
+                String country_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |",
+                                i.getCode(), i.getName(), i.getContinent().getName(), i.getRegion().getName(), i.getPopulation(), i.getCapital().getName());
+                System.out.println(country_string);
+            }
+
+
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+            return null;
+        }
+    }
+
+
 }
 
