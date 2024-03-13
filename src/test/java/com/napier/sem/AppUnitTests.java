@@ -1,7 +1,10 @@
 package com.napier.sem;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,39 +41,4 @@ public class AppUnitTests
         assertTrue(dataHolder.isConnected());
     }
 
-    @Test
-    void countriesByPopTest()
-    {
-
-        //dataHolder.countriesByPop();
-    }
-    @Test
-    void countriesByPopInContinentTest()
-    {
-
-        //dataHolder.countriesByPopInContinent(null);
-    }
-    @Test
-    void countriesByPopInRegionTest()
-    {
-
-        //dataHolder.countriesByPopInRegion(null);
-    }
-    @Test
-    void NcountriesByPopTest()
-    {
-
-        //dataHolder.NcountriesByPop(null);
-    }
-    @Test
-    void NcountriesByPopInContinentTest()
-    {
-        //dataHolder.NcountriesByPopInContinent(null,null);
-    }
-    @Test
-    void NcountriesByPopInRegionTest()
-    {
-
-        //dataHolder.NcountriesByPopInRegion(null,null);
-    }
 }
