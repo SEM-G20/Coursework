@@ -34,8 +34,8 @@ public class DataHolderUnitTests {
     @Test
     void testCountriesByPopInContinent(){
         assertNotNull(dataHolder.countriesByPopInContinent("Europe"));
-        // needs test for null argument
-        // needs test for invalid argument e.g. "qd3wd17"
+        // todo: test for null argument
+        // todo: test for invalid argument e.g. "qd3wd17"
     }
 
     @Test
