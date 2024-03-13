@@ -11,8 +11,12 @@ public class AppTest
     @BeforeAll
     static void init()
     {
+        // this block below is what it needs to be done to get valid dataHolder object
+        // !! BUT it doesn't connect to the database
         app = new App();
-        DataHolder dataHolder = new DataHolder();
+        app.connect();
+        dataHolder = app.createDataHolder();
+        dataHolder.loadData();
     }
 
     @Test
