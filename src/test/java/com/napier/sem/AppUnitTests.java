@@ -19,17 +19,15 @@ public class AppUnitTests
 
     @Test
     void testConnect(){
-        if(!app.isConnected()){
-            app.connect("localhost:33060", 30000);
-        }
+        app = new App();
+        app.connect("localhost:33060", 30000);
         assertTrue(app.isConnected());
     }
 
     @Test
     void testDisconnect(){
-        if(!app.isConnected()){
-            app.connect("localhost:33060", 30000);
-        }
+        app = new App();
+        app.connect("localhost:33060", 30000);
         app.disconnect();
         assertFalse(app.isConnected());
     }
