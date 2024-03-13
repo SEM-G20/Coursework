@@ -25,6 +25,7 @@ public class AppUnitTests
         app = new App();
         app.connect("localhost:33060", 30000);
         assertTrue(app.isConnected());
+        // todo: test for invalid arguments
     }
 
     @Test

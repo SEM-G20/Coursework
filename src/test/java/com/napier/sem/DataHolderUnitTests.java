@@ -34,31 +34,37 @@ public class DataHolderUnitTests {
     @Test
     void testCountriesByPopInContinent(){
         assertNotNull(dataHolder.countriesByPopInContinent("Europe"));
+        // needs test for null argument
+        // needs test for invalid argument e.g. "qd3wd17"
     }
 
     @Test
-    void countriesByPopInContinentTest()
+    void testCountriesByPopInRegion()
     {
-        //dataHolder.countriesByPopInContinent(null);
+        // todo: test for valid argument
+        // todo: test for null argument
+        // todo: test for invalid argument e.g. "qd3wd17"
+    }
+
+    @Test
+    void testNCountriesByPop()
+    {
+        // todo: test for valid argument
+        // todo: test for null argument
+        // todo: test for invalid argument e.g. "qd3wd17"
     }
     @Test
-    void countriesByPopInRegionTest()
+    void testNCountriesByPopInContinent()
     {
-        //dataHolder.countriesByPopInRegion(null);
+        // todo: test for valid argument
+        // todo: test for null argument
+        // todo: test for invalid argument e.g. "qd3wd17"
     }
     @Test
-    void NcountriesByPopTest()
+    void testNCountriesByPopInRegion()
     {
-        //dataHolder.NcountriesByPop(null);
-    }
-    @Test
-    void NcountriesByPopInContinentTest()
-    {
-        //dataHolder.NcountriesByPopInContinent(null,null);
-    }
-    @Test
-    void NcountriesByPopInRegionTest()
-    {
-        //dataHolder.NcountriesByPopInRegion(null,null);
+        // todo: test for valid argument
+        // todo: test for null argument
+        // todo: test for invalid argument e.g. "qd3wd17"
     }
 }
