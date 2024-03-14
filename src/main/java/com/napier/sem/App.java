@@ -52,6 +52,7 @@ public class App {
      * Connect to the database.
      */
     public void connect(String location, int delay) {
+
         try {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");

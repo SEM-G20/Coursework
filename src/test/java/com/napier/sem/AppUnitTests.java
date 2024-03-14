@@ -1,11 +1,7 @@
 package com.napier.sem;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,17 +17,25 @@ public class AppUnitTests
         dataHolder = new DataHolder();
     }
 
-    @AfterAll
-    static void end(){
-        app.disconnect();
-    }
-
     @Test
-    void testConnect(){
+    void testConnectIfValid(){
         app = new App();
         app.connect("localhost:33060", 30000);
         assertTrue(app.isConnected());
-        // todo: test for invalid arguments
+    }
+
+    @Test
+    void testConnectIfNull(){
+        app = new App();
+        app.connect(null, 30);
+        assertFalse(app.isConnected());
+    }
+
+    @Test
+    void testConnectIfNotValid(){
+        app = new App();
+        app.connect("qd3wd17", 30);
+        assertFalse(app.isConnected());
     }
 
     @Test
