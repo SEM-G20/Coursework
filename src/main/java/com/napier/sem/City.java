@@ -11,6 +11,10 @@ public class City {
     private District district;
     private Country country;
 
+    public City(String name)
+    {
+        this.name = name;
+    }
     public City(int id, String name, int population)
     {
         this.id = id;

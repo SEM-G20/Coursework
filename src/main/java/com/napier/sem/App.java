@@ -19,7 +19,7 @@ public class App {
         System.out.println("Connected!");
 
         // Load data from database into the app
-        DataHolder dataHolder = new DataHolder(a.con);
+        DataHolder dataHolder = a.createDataHolder();
         dataHolder.loadData();
 
         // Check sample data if objects are created and connected correctly
@@ -81,6 +81,10 @@ public class App {
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
+    }
+
+    public DataHolder createDataHolder(){
+        return new DataHolder(con);
     }
 
     /**
