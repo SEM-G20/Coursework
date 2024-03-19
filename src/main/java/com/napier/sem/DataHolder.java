@@ -760,6 +760,559 @@ public class DataHolder {
         }
     }
 
+    public ArrayList<City> citiesByPop()
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.NAME, country.name, district, city.population "
+                            + "FROM city "
+                            + "JOIN country ON country.code = city.CountryCode "
+                            + "ORDER BY city.Population desc ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next())
+            {
+                City city = new City();
+
+                city.setName(rset.getString("city.Name"));
+                city.setCountry(new Country(rset.getString("Country.Name")));
+                city.setDistrict(new District(rset.getString("city.District")));
+                city.setPopulation(rset.getInt("city.population"));
+
+
+
+                cities.add(city);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "Name", "Country", "District", "Population"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "---", "---", "---", "---"));
+
+            // Loop over all employees in the list
+            for (City i : cities)
+            {
+                String city_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s |",
+                                i.getName(), i.getCountry().getName(), i.getDistrict().getName(), i.getPopulation());
+                System.out.println(city_string);
+            }
+
+
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+
+    public ArrayList<City> citiesInContinentByPop(String continent)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.NAME, country.name, district, city.population "
+                            + "FROM city "
+                            + "JOIN country ON country.code = city.CountryCode "
+                            + "WHERE country.Continent='" + continent + "'"
+                            + "ORDER BY city.Population desc" ;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next())
+            {
+                City city = new City();
+
+                city.setName(rset.getString("city.Name"));
+                city.setCountry(new Country(rset.getString("Country.Name")));
+                city.setDistrict(new District(rset.getString("city.District")));
+                city.setPopulation(rset.getInt("city.population"));
+
+
+
+                cities.add(city);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "Name", "Country", "District", "Population"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "---", "---", "---", "---"));
+
+            // Loop over all employees in the list
+            for (City i : cities)
+            {
+                String city_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s |",
+                                i.getName(), i.getCountry().getName(), i.getDistrict().getName(), i.getPopulation());
+                System.out.println(city_string);
+            }
+
+
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+
+    public ArrayList<City> citiesInRegionByPop(String region)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.NAME, country.name, district, city.population "
+                            + "FROM city "
+                            + "JOIN country ON country.code = city.CountryCode "
+                            + "WHERE country.Region='" + region + "'"
+                            + "ORDER BY city.Population desc" ;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next())
+            {
+                City city = new City();
+
+                city.setName(rset.getString("city.Name"));
+                city.setCountry(new Country(rset.getString("Country.Name")));
+                city.setDistrict(new District(rset.getString("city.District")));
+                city.setPopulation(rset.getInt("city.population"));
+
+
+
+                cities.add(city);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "Name", "Country", "District", "Population"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "---", "---", "---", "---"));
+
+            // Loop over all employees in the list
+            for (City i : cities)
+            {
+                String city_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s |",
+                                i.getName(), i.getCountry().getName(), i.getDistrict().getName(), i.getPopulation());
+                System.out.println(city_string);
+            }
+
+
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+
+    public ArrayList<City> citiesInCountryByPop(String country)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.NAME, country.name, district, city.population "
+                            + "FROM city "
+                            + "JOIN country ON country.code = city.CountryCode "
+                            + "WHERE country.name='" + country + "'"
+                            + "ORDER BY city.Population desc" ;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next())
+            {
+                City city = new City();
+
+                city.setName(rset.getString("city.Name"));
+                city.setCountry(new Country(rset.getString("Country.Name")));
+                city.setDistrict(new District(rset.getString("city.District")));
+                city.setPopulation(rset.getInt("city.population"));
+
+
+
+                cities.add(city);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "Name", "Country", "District", "Population"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "---", "---", "---", "---"));
+
+            // Loop over all employees in the list
+            for (City i : cities)
+            {
+                String city_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s |",
+                                i.getName(), i.getCountry().getName(), i.getDistrict().getName(), i.getPopulation());
+                System.out.println(city_string);
+            }
+
+
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+    public ArrayList<City> citiesInDistrictByPop(String district)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.NAME, country.name, district, city.population "
+                            + "FROM city "
+                            + "JOIN country ON country.code = city.CountryCode "
+                            + "WHERE city.District='" + district + "'"
+                            + "ORDER BY city.Population desc" ;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next())
+            {
+                City city = new City();
+
+                city.setName(rset.getString("city.Name"));
+                city.setCountry(new Country(rset.getString("Country.Name")));
+                city.setDistrict(new District(rset.getString("city.District")));
+                city.setPopulation(rset.getInt("city.population"));
+
+
+
+                cities.add(city);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "Name", "Country", "District", "Population"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "---", "---", "---", "---"));
+
+            // Loop over all employees in the list
+            for (City i : cities)
+            {
+                String city_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s |",
+                                i.getName(), i.getCountry().getName(), i.getDistrict().getName(), i.getPopulation());
+                System.out.println(city_string);
+            }
+
+
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+
+    public ArrayList<City> NcitiesByPop(int N)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.NAME, country.name, district, city.population "
+                            + "FROM city "
+                            + "JOIN country ON country.code = city.CountryCode "
+                            + "ORDER BY city.Population desc "
+                            + "LIMIT " + N;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next())
+            {
+                City city = new City();
+
+                city.setName(rset.getString("city.Name"));
+                city.setCountry(new Country(rset.getString("Country.Name")));
+                city.setDistrict(new District(rset.getString("city.District")));
+                city.setPopulation(rset.getInt("city.population"));
+
+
+
+                cities.add(city);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "Name", "Country", "District", "Population"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "---", "---", "---", "---"));
+
+            // Loop over all employees in the list
+            for (City i : cities)
+            {
+                String city_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s |",
+                                i.getName(), i.getCountry().getName(), i.getDistrict().getName(), i.getPopulation());
+                System.out.println(city_string);
+            }
+
+
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+
+    public ArrayList<City> NcitiesInContinentByPop(String continent, int N)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.NAME, country.name, district, city.population "
+                            + "FROM city "
+                            + "JOIN country ON country.code = city.CountryCode "
+                            + "WHERE country.Continent='" + continent + "'"
+                            + "ORDER BY city.Population desc "
+                            + "LIMIT " + N;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next())
+            {
+                City city = new City();
+
+                city.setName(rset.getString("city.Name"));
+                city.setCountry(new Country(rset.getString("Country.Name")));
+                city.setDistrict(new District(rset.getString("city.District")));
+                city.setPopulation(rset.getInt("city.population"));
+
+
+
+                cities.add(city);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "Name", "Country", "District", "Population"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "---", "---", "---", "---"));
+
+            // Loop over all employees in the list
+            for (City i : cities)
+            {
+                String city_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s |",
+                                i.getName(), i.getCountry().getName(), i.getDistrict().getName(), i.getPopulation());
+                System.out.println(city_string);
+            }
+
+
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+
+    public ArrayList<City> NcitiesInRegionByPop(String region, int N)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.NAME, country.name, district, city.population "
+                            + "FROM city "
+                            + "JOIN country ON country.code = city.CountryCode "
+                            + "WHERE country.Region='" + region + "'"
+                            + "ORDER BY city.Population desc "
+                            + "LIMIT " + N;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next())
+            {
+                City city = new City();
+
+                city.setName(rset.getString("city.Name"));
+                city.setCountry(new Country(rset.getString("country.Name")));
+                city.setDistrict(new District(rset.getString("city.District")));
+                city.setPopulation(rset.getInt("city.population"));
+
+
+
+                cities.add(city);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "Name", "Country", "District", "Population"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "---", "---", "---", "---"));
+
+            // Loop over all employees in the list
+            for (City i : cities)
+            {
+                String city_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s |",
+                                i.getName(), i.getCountry().getName(), i.getDistrict().getName(), i.getPopulation());
+                System.out.println(city_string);
+            }
+
+
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+
+    public ArrayList<City> NcitiesInCountryByPop(String country, int N)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.NAME, country.name, district, city.population "
+                            + "FROM city "
+                            + "JOIN country ON country.code = city.CountryCode "
+                            + "AND country.name='" + country + "'"
+                            + "ORDER BY city.Population desc "
+                            + "LIMIT " + N;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next())
+            {
+                City city = new City();
+
+                city.setName(rset.getString("city.Name"));
+                city.setCountry(new Country(rset.getString("country.Name")));
+                city.setDistrict(new District(rset.getString("city.District")));
+                city.setPopulation(rset.getInt("city.population"));
+
+
+
+                cities.add(city);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "Name", "Country", "District", "Population"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "---", "---", "---", "---"));
+
+            // Loop over all employees in the list
+            for (City i : cities)
+            {
+                String city_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s |",
+                                i.getName(), i.getCountry().getName(), i.getDistrict().getName(), i.getPopulation());
+                System.out.println(city_string);
+            }
+
+
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+    public ArrayList<City> NcitiesInDistrictByPop(String district, int N)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.NAME, country.name, district, city.population "
+                            + "FROM city "
+                            + "JOIN country ON country.code = city.CountryCode "
+                            + "WHERE city.District='" + district + "'"
+                            + "ORDER BY city.Population desc "
+                            + "LIMIT " + N;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next())
+            {
+                City city = new City();
+
+                city.setName(rset.getString("city.Name"));
+                city.setCountry(new Country(rset.getString("Country.Name")));
+                city.setDistrict(new District(rset.getString("city.District")));
+                city.setPopulation(rset.getInt("city.population"));
+
+
+
+                cities.add(city);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "Name", "Country", "District", "Population"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s |", "---", "---", "---", "---"));
+
+
+            // Loop over all employees in the list
+            for (City i : cities)
+            {
+                String city_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s |",
+                                i.getName(), i.getCountry().getName(), i.getDistrict().getName(), i.getPopulation());
+                System.out.println(city_string);
+            }
+
+
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+
+
 
 }
 

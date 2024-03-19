@@ -40,6 +40,8 @@ public class App {
         HashMap<String, District> districts = dataHolder.getDistricts();
         HashMap<Integer, City> cities = dataHolder.getCities();
 
+
+
         // Disconnect from the database
         a.disconnect();
     }
