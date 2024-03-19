@@ -1,12 +1,11 @@
 package com.napier.sem;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AppIntegrationTests {
+public class DataHolderIntegrationTests {
     static App app;
     static DataHolder dataHolder;
 
@@ -18,15 +17,13 @@ public class AppIntegrationTests {
         dataHolder = app.createDataHolder();
     }
 
-    @AfterAll
-    static void end(){
-        app.disconnect();
-    }
-
     @Test
     void testLoadData(){
         dataHolder.loadData();
-        Continent continent = dataHolder.getContinents().get("Europe");
-        assertNotNull(continent);
+        assertFalse(dataHolder.getContinents().isEmpty());
+        assertFalse(dataHolder.getRegions().isEmpty());
+        assertFalse(dataHolder.getCountries().isEmpty());
+        assertFalse(dataHolder.getDistricts().isEmpty());
+        assertFalse(dataHolder.getCities().isEmpty());
     }
 }
