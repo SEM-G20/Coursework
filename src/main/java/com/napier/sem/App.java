@@ -13,7 +13,11 @@ public class App {
         App a = new App();
 
         // Connect to the database
-        a.connect();
+        if(args.length < 1){
+            a.connect("localhost:33060", 30000);
+        }else{
+            a.connect(args[0], Integer.parseInt(args[1]));
+        }
 
         // Print a message indicating successful connection
         System.out.println("Connected!");
@@ -36,48 +40,46 @@ public class App {
         HashMap<String, District> districts = dataHolder.getDistricts();
         HashMap<Integer, City> cities = dataHolder.getCities();
 
+
+
         // Disconnect from the database
         a.disconnect();
     }
 
     // Connection object to hold the connection to the database
     private Connection con = null;
+    private boolean isConnected = false;
 
     /**
      * Connect to the database.
      */
-    public void connect() {
+    public void connect(String location, int delay) {
+
         try {
-            // Load MySQL JDBC driver
+            // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            // Print error message if driver is not found
             System.out.println("Could not load SQL driver");
-            // Exit the program with an error code
             System.exit(-1);
         }
 
-        // Number of retries to connect to the database
         int retries = 10;
         for (int i = 0; i < retries; ++i) {
-            // Print message indicating attempt to connect
             System.out.println("Connecting to database...");
             try {
-                // Wait for some time before attempting to connect again
-                Thread.sleep(30000);
-                // Connect to the database using DriverManager
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
-                // Print message indicating successful connection
+                // Wait a bit for db to start
+                Thread.sleep(delay);
+                // Connect to database
+                con = DriverManager.getConnection("jdbc:mysql://" + location
+                                + "/world?allowPublicKeyRetrieval=true&useSSL=false",
+                        "root", "example");
                 System.out.println("Successfully connected");
-                // Break out of the loop as the connection is successful
+                isConnected = true;
                 break;
             } catch (SQLException sqle) {
-                // Print error message if connection fails
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
-                // Print the error message received from SQLException
+                System.out.println("Failed to connect to database attempt " +                                  Integer.toString(i));
                 System.out.println(sqle.getMessage());
             } catch (InterruptedException ie) {
-                // Print error message if thread is interrupted unexpectedly
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
@@ -99,6 +101,8 @@ public class App {
             {
                 // Close the database connection
                 con.close();
+                isConnected = false;
+                System.out.println("Successfully disconnected");
             }
             catch (Exception e)
             {
@@ -106,6 +110,11 @@ public class App {
                 System.out.println("Error closing connection to database");
             }
         }
+    }
+
+    public boolean isConnected()
+    {
+        return isConnected;
     }
 
 }

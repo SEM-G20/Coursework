@@ -18,6 +18,11 @@ public class Country {
 
     public Country(){}
 
+    public Country(String name)
+    {
+        this.name = name;
+    }
+
     public Country(String name, int population)
     {
         this.name = name;
