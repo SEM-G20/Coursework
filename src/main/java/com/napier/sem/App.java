@@ -26,21 +26,12 @@ public class App {
         DataHolder dataHolder = a.createDataHolder();
         dataHolder.loadData();
 
-        // Check sample data if objects are created and connected correctly
-        if(dataHolder.testingRegionAddresses()){
-            if(dataHolder.testingCitiesDataMatching()){
-                System.out.println("Data load successful.");
-            }
-        }
-
         // Access objects
         HashMap<String, Continent> continents = dataHolder.getContinents();
         HashMap<String, Region> regions = dataHolder.getRegions();
         HashMap<String, Country> countries = dataHolder.getCountries();
         HashMap<String, District> districts = dataHolder.getDistricts();
         HashMap<Integer, City> cities = dataHolder.getCities();
-
-
 
         // Disconnect from the database
         a.disconnect();
