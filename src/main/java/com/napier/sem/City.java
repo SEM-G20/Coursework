@@ -11,6 +11,7 @@ public class City {
     private District district;
     private String code;
     private Country country;
+
     public City(int id){this.id=id;}
     public City(String name)
     {
@@ -41,5 +42,19 @@ public class City {
 
     public Country getCountry(){ return country; }
     public void setCountry(Country country){ this.country = country; }
+
+    @Override
+    public String toString(){
+
+        String str = "city id=" + id + ", name=" + name + ", " + "population=" + population;
+        if(country != null){
+            str += ", country=" + country.getName();
+        }
+        if(district != null){
+            str += ", district=" + district.getName();
+        }
+
+        return str;
+    }
 
 }
