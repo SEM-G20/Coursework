@@ -1,0 +1,1 @@
+City=Warszawa, Country=Poland, population=1615369
