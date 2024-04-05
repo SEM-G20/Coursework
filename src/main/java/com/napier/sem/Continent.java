@@ -1,6 +1,7 @@
 package com.napier.sem;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents a continent.
@@ -36,4 +37,23 @@ public class Continent {
     }
     public HashMap<String, Region> getRegions(){ return regions; }
     public void addRegion(String name, Region region){ regions.put(name, region); }
+
+    @Override
+    public String toString(){
+
+        StringBuilder str = new StringBuilder("name=" + name + ", population=" + population);
+        if(regions != null){
+            str.append(", regions=");
+            str.append("(");
+            for(Map.Entry<String, Region> entry : regions.entrySet()){
+                str.append(entry.getKey());
+                str.append(", ");
+            }
+            str.deleteCharAt(str.length() - 1);
+            str.deleteCharAt(str.length() - 1);
+            str.append(")");
+        }
+
+        return str.toString();
+    }
 }

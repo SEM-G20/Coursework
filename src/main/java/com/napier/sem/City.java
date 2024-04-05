@@ -46,7 +46,7 @@ public class City {
     @Override
     public String toString(){
 
-        String str = "city id=" + id + ", name=" + name + ", " + "population=" + population;
+        String str = "id=" + id + ", name=" + name + ", population=" + population;
         if(country != null){
             str += ", country=" + country.getName();
         }

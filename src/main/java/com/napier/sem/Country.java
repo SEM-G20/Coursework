@@ -1,6 +1,7 @@
 package com.napier.sem;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents a country.
@@ -69,5 +70,28 @@ public class Country {
             }
             mainLanguage = tempLanguage;
         }
+    }
+
+    @Override
+    public String toString(){
+
+        StringBuilder str = new StringBuilder("code=" + code + "name=" + name + ", population=" + population +
+                ", continent=" + continent.getName() + ", region=" + region.getName());
+
+        if(districts != null){
+            str.append(", districts=");
+            str.append("(");
+            for(Map.Entry<String, District> entry : districts.entrySet()){
+                str.append(entry.getKey());
+                str.append(", ");
+            }
+            str.deleteCharAt(str.length() - 1);
+            str.deleteCharAt(str.length() - 1);
+            str.append(")");
+        }
+
+        str.append(", capital=").append(capital.getName()).append(", language=").append(mainLanguage);
+
+        return str.toString();
     }
 }
