@@ -142,4 +142,37 @@ public class AppUnitTests
         assertNull(testFile);
     }
 
+    @Test
+    void testStringToTitleCaseIfValid(){
+        String str = "teSTing sTrINg";
+        String[] strArr = str.split("[\\s,;:/.]+");
+        String actual = app.stringToTitleCase(strArr, 0);
+        String expected = "Testing String";
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testStringToTitleCaseIfArrNull(){
+        assertNull(app.stringToTitleCase(null, 0));
+    }
+
+    @Test
+    void testStringToTitleCaseIfArrEmpty(){
+        String[] strArr = {};
+        assertNull(app.stringToTitleCase(strArr, 0));
+    }
+
+    @Test
+    void testStringToTitleCaseIfIdxOutRange(){
+        String[] strArr = {"testing", "idxRange"};
+        assertNull(app.stringToTitleCase(strArr, 2));
+    }
+
+    @Test
+    void testStringToTitleCaseIfIdxInvalid(){
+        String[] strArr = {"testing", "idxRange"};
+        assertNull(app.stringToTitleCase(strArr, -1));
+    }
+
 }

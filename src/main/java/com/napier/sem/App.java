@@ -33,7 +33,7 @@ public class App {
         DataHolder dataHolder = a.createDataHolder();
         dataHolder.loadData();
 
-        a.providePopulationInfoOnRequest(dataHolder);
+        //a.providePopulationInfoOnRequest(dataHolder);
 
         // Disconnect from the database
         a.disconnect();
@@ -179,22 +179,37 @@ public class App {
      */
     public String stringToTitleCase(String[] stringsArray, int startingIndex){
 
-        // Build valid name from user input e.g. "North America"
-        StringBuilder nameSB = new StringBuilder();
-        // Combine all arguments after first one (first is command, rest is the name)
-        for(int i = startingIndex; i < stringsArray.length; i++){
-
-            // Capitalise first letter of every word
-            String strCamelCase = stringsArray[i].substring(0, 1).toUpperCase() +
-                    stringsArray[i].substring(1);
-            // Concatenate all words together as name
-            nameSB.append(strCamelCase);
-            // Add space between each word except last one
-            if(i < stringsArray.length - 1){
-                nameSB.append(" ");
-            }
+        if(stringsArray == null){
+            System.out.println("Error - array of strings is null.");
+            return null;
         }
-        return nameSB.toString();
+        else if(stringsArray.length == 0){
+            System.out.println("Error - array of strings is empty.");
+            return null;
+        }
+        else if(startingIndex >= stringsArray.length || startingIndex < 0){
+            System.out.println("Error - startingIndex out of range.");
+            return null;
+        }
+        else{
+            // Build valid name from user input e.g. "North America"
+            StringBuilder nameSB = new StringBuilder();
+            // Combine all arguments after first one (first is command, rest is the name)
+            for(int i = startingIndex; i < stringsArray.length; i++){
+
+                // Capitalise first letter of every word
+                String strCamelCase = stringsArray[i].substring(0, 1).toUpperCase() +
+                        stringsArray[i].substring(1).toLowerCase();
+                // Concatenate all words together as name
+                nameSB.append(strCamelCase);
+                // Add space between each word except last one
+                if(i < stringsArray.length - 1){
+                    nameSB.append(" ");
+                }
+            }
+            return nameSB.toString();
+        }
+
     }
 
     /**
