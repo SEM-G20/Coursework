@@ -1,1 +1,0 @@
-Country=United Arab Emirates, population=2441000
