@@ -92,7 +92,7 @@ public class AppUnitTests
                 "'country x', where x is a name of country, to get specified country population\n" +
                 "'district x', where x is a name of district, to get specified district population\n" +
                 "'city x', where x is a name of city, to get specified city population\n" +
-                "'e' to exit the program\r\n";
+                "'e' to exit the program\n";
         app.displayMenu();
         assertEquals(expected.replaceAll("\\s+",""), outContent.toString().replaceAll("\\s+",""));
     }
@@ -173,6 +173,24 @@ public class AppUnitTests
     void testStringToTitleCaseIfIdxInvalid(){
         String[] strArr = {"testing", "idxRange"};
         assertNull(app.stringToTitleCase(strArr, -1));
+    }
+
+    @Test
+    void testGetFileNameIfStringValid(){
+        String str = "testing";
+        String expected = "testing-population.md";
+        String actual = app.getFilename(str);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testGetFileNameIfStringNull(){
+        assertNull(app.getFilename(null));
+    }
+
+    @Test
+    void testGetFileNameIfStringEmpty(){
+        assertNull(app.getFilename(""));
     }
 
 }

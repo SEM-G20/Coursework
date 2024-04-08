@@ -218,16 +218,27 @@ public class App {
      * @return
      */
     public String getFilename(String str){
-        StringBuilder filenameSB = new StringBuilder();
-        str = str.toLowerCase();
-        String[] stringsArray = str.split("[\\s,;:/.]+");
 
-        for(int i = 0; i < stringsArray.length; i++){
-            filenameSB.append(stringsArray[i]);
-            filenameSB.append("-");
+        if(str == null){
+            System.out.println("Error - string is null.");
+            return null;
         }
-        filenameSB.append("population.md");
-        return filenameSB.toString();
+        else if(str.isEmpty()){
+            System.out.println("Error - string is empty.");
+            return null;
+        }
+        else{
+            StringBuilder filenameSB = new StringBuilder();
+            str = str.toLowerCase();
+            String[] stringsArray = str.split("[\\s,;:/.]+");
+
+            for(int i = 0; i < stringsArray.length; i++){
+                filenameSB.append(stringsArray[i]);
+                filenameSB.append("-");
+            }
+            filenameSB.append("population.md");
+            return filenameSB.toString();
+        }
     }
 
     /**
