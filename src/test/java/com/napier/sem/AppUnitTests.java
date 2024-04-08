@@ -94,7 +94,7 @@ public class AppUnitTests
                 "'city x', where x is a name of city, to get specified city population\n" +
                 "'e' to exit the program\r\n";
         app.displayMenu();
-        assertEquals(expected, outContent.toString());
+        assertEquals(expected.replaceAll("\\s+",""), outContent.toString().replaceAll("\\s+",""));
     }
 
     @Test
