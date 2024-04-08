@@ -248,9 +248,6 @@ public class App {
      */
     public String stringToTitleCase(String string){
 
-        string = string.toLowerCase();
-        String[] stringsArray = string.split("[\\s,;:/.]+");
-
         if(string == null){
             System.out.println("Error - provided string is null.");
             return null;
@@ -260,6 +257,10 @@ public class App {
             return null;
         }
         else{
+
+            string = string.toLowerCase();
+            String[] stringsArray = string.split("[\\s,;:/.]+");
+
             // Build valid name from user input e.g. "North America"
             StringBuilder nameSB = new StringBuilder();
 
