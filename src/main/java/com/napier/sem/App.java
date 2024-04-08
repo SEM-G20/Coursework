@@ -1,5 +1,6 @@
 package com.napier.sem;
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
@@ -153,7 +154,13 @@ public class App {
         // src: https://www.educative.io/answers/how-to-get-a-current-working-directory-in-java
         Path currRelativePath = Paths.get("");
         String currAbsolutePathString = currRelativePath.toAbsolutePath().toString();
-        currAbsolutePathString += "/population-requests/";
+        currAbsolutePathString += "/population-requests";
+
+        // src: https://stackoverflow.com/a/3634906
+        File theDir = new File(currAbsolutePathString);
+        if (!theDir.exists()){
+            theDir.mkdirs();
+        }
 
         if(filename == null) {
             System.out.println("Error - file name is null.");
@@ -164,6 +171,7 @@ public class App {
             return file;
         }
         else{
+            currAbsolutePathString += "/";
             currAbsolutePathString += filename;
         }
 
