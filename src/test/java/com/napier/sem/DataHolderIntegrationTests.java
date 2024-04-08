@@ -165,7 +165,7 @@ public class DataHolderIntegrationTests {
             //String regionDB = row.get(6);
             //int countryPopulationDB = Integer.parseInt(row.get(7));
 
-            String expected = "city id=" + cityIdDB + ", name=" + cityNameDB + ", " + "population=" + cityPopulationDB
+            String expected = "id=" + cityIdDB + ", name=" + cityNameDB + ", " + "population=" + cityPopulationDB
                     + ", country=" + countryNameDB + ", district=" + cityDistrictDB;
             String actual = dataHolder.getCities().get(cityCode).toString();
 

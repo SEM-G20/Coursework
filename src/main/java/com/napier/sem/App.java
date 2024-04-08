@@ -33,7 +33,7 @@ public class App {
         DataHolder dataHolder = a.createDataHolder();
         dataHolder.loadData();
 
-        providePopulationInfoOnRequest(dataHolder);
+        a.providePopulationInfoOnRequest(dataHolder);
 
         // Disconnect from the database
         a.disconnect();
@@ -113,7 +113,7 @@ public class App {
     /**
      * Display to console menu with command options to user.
      */
-    public static void displayMenu(){
+    public void displayMenu(){
         System.out.println(
                 "Type in:\n" +
                         "'world' to get world's population\n" +
@@ -127,16 +127,35 @@ public class App {
 
     // no idea how you've produced all reports without writing to file functionality or even calling the methods
     // src: https://www.digitalocean.com/community/tutorials/java-write-to-file
-    private static void writeToFile(String data, String filename) {
+    public File writeToFile(String data, String filename) {
+
+        File file = null;
 
         // src: https://www.educative.io/answers/how-to-get-a-current-working-directory-in-java
         Path currRelativePath = Paths.get("");
         String currAbsolutePathString = currRelativePath.toAbsolutePath().toString();
         currAbsolutePathString += "/population-requests/";
-        currAbsolutePathString += filename;
 
-        File file = new File(currAbsolutePathString);
+        if(filename == null) {
+            System.out.println("Error - file name is null.");
+            return file;
+        }
+        else if(!filename.endsWith(".md")){
+            System.out.println("Error - file name has no md extension.");
+            return file;
+        }
+        else{
+            currAbsolutePathString += filename;
+        }
+
+        try {
+            file = new File(currAbsolutePathString);
+        } catch (Exception e){
+            System.out.println("Error - file path invalid.");
+        }
+
         FileWriter fr = null;
+
         try {
             fr = new FileWriter(file);
             fr.write(data);
@@ -150,6 +169,7 @@ public class App {
                 e.printStackTrace();
             }
         }
+        return file;
     }
 
     /**
@@ -157,7 +177,7 @@ public class App {
      * @param stringsArray
      * @return
      */
-    private static String stringToTitleCase(String[] stringsArray, int startingIndex){
+    public String stringToTitleCase(String[] stringsArray, int startingIndex){
 
         // Build valid name from user input e.g. "North America"
         StringBuilder nameSB = new StringBuilder();
@@ -182,7 +202,7 @@ public class App {
      * @param str
      * @return
      */
-    private static String getFilename(String str){
+    public String getFilename(String str){
         StringBuilder filenameSB = new StringBuilder();
         str = str.toLowerCase();
         String[] stringsArray = str.split("[\\s,;:/.]+");
@@ -201,7 +221,7 @@ public class App {
      * where name of the searched element is provided by a user.
      * @param dataHolder
      */
-    private static void providePopulationInfoOnRequest(DataHolder dataHolder){
+    public void providePopulationInfoOnRequest(DataHolder dataHolder){
 
         HashMap<String, Continent> continents = dataHolder.getContinents();
         HashMap<String, Region> regions = dataHolder.getRegions();
@@ -212,7 +232,7 @@ public class App {
         boolean getPopulation = true;
         while(getPopulation){
 
-            displayMenu();
+            this.displayMenu();
             String command = scanner.nextLine();
 
             command = command.toLowerCase();
