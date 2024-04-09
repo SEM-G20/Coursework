@@ -9,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -176,6 +177,24 @@ public class AppUnitTests
     }
 
     @Test
+    void testStringToTitleCaseIfStringValid(){
+        String str = "teSTing sTrINg";
+        String expected = "Testing String";
+        String actual = app.stringToTitleCase(str);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testStringToTitleCaseIfStringNull(){
+        assertNull(app.stringToTitleCase(null));
+    }
+
+    @Test
+    void testStringToTitleCaseIfStringEmpty(){
+        assertNull(app.stringToTitleCase(""));
+    }
+
+    @Test
     void testGetFileNameIfStringValid(){
         String str = "testing";
         String expected = "testing-population.md";
@@ -191,6 +210,16 @@ public class AppUnitTests
     @Test
     void testGetFileNameIfStringEmpty(){
         assertNull(app.getFilename(""));
+    }
+
+    @Test
+    void testSetExtraReportsIfNotNull(){
+        assertNotNull(app.setExtraReports());
+    }
+
+    @Test
+    void testSetExtraReportsIfNotEmpty(){
+        assertFalse(app.setExtraReports().isEmpty());
     }
 
 }
