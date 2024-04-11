@@ -266,7 +266,7 @@ public class App {
 
             String firstCmdStr = commandStrings[0];
 
-            int population = 0;
+            long population = 0;
 
             // Handle option selection
             if(firstCmdStr.equals("e")){
