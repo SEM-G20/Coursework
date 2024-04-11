@@ -1,0 +1,1 @@
+Continent=North America, population=482993000

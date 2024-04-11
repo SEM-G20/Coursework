@@ -115,7 +115,7 @@ public class DataHolder {
                 // Link entries
                 district.addCity(cityID, city);
                 country.addDistrict(cityDistrict, district);
-                region.addCountry(countryRegion, country);
+                region.addCountry(countryName, country);
                 continent.addRegion(countryRegion, region);
             }
 

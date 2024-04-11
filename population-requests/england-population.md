@@ -1,0 +1,1 @@
+District=England, Country=United Kingdom, population=19978543
