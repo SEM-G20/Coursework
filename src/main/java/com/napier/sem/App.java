@@ -1,15 +1,17 @@
 package com.napier.sem;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class App {
+
+    private HashMap<String, Continent> continents;
+    private HashMap<String, Region> regions;
+    private HashMap<String, Country> countries;
+
 
     /**
      * Main method
@@ -33,6 +35,14 @@ public class App {
         DataHolder dataHolder = a.createDataHolder();
         dataHolder.loadData();
 
+        // Lines 38-42 are used to generate extra reports (hardcoded requests)
+        a.continents = dataHolder.getContinents();
+        a.regions = dataHolder.getRegions();
+        a.countries = dataHolder.getCountries();
+        ArrayList<String[]> extraReports = a.setExtraReports();
+        extraReports.forEach(a::manageMenu);
+
+        // Replace those with the line below (45) to enable user report requests in runtime
         //a.providePopulationInfoOnRequest(dataHolder);
 
         // Disconnect from the database
@@ -105,6 +115,10 @@ public class App {
         }
     }
 
+    /**
+     * Return status of the connection with database.
+     * @return
+     */
     public boolean isConnected()
     {
         return isConnected;
@@ -127,6 +141,12 @@ public class App {
 
     // no idea how you've produced all reports without writing to file functionality or even calling the methods
     // src: https://www.digitalocean.com/community/tutorials/java-write-to-file
+    /**
+     * Create and write to md file.
+     * @param data
+     * @param filename
+     * @return
+     */
     public File writeToFile(String data, String filename) {
 
         File file = null;
@@ -134,7 +154,13 @@ public class App {
         // src: https://www.educative.io/answers/how-to-get-a-current-working-directory-in-java
         Path currRelativePath = Paths.get("");
         String currAbsolutePathString = currRelativePath.toAbsolutePath().toString();
-        currAbsolutePathString += "/population-requests/";
+        currAbsolutePathString += "/population-requests";
+
+        // src: https://stackoverflow.com/a/3634906
+        File theDir = new File(currAbsolutePathString);
+        if (!theDir.exists()){
+            theDir.mkdirs();
+        }
 
         if(filename == null) {
             System.out.println("Error - file name is null.");
@@ -145,6 +171,7 @@ public class App {
             return file;
         }
         else{
+            currAbsolutePathString += "/";
             currAbsolutePathString += filename;
         }
 
@@ -174,7 +201,8 @@ public class App {
 
     /**
      * Convert string to "Title Case" style, each word starts with upper case and each string is divided with space.
-     * @param stringsArray
+     * Use when working with runtime report requests functionality.
+     * @param stringsArray whole user command from console
      * @return
      */
     public String stringToTitleCase(String[] stringsArray, int startingIndex){
@@ -213,6 +241,48 @@ public class App {
     }
 
     /**
+     * Convert string to "Title Case" style, each word starts with upper case and each string is divided with space.
+     * Use when working with hardcoded report requests functionality.
+     * @param string
+     * @return
+     */
+    public String stringToTitleCase(String string){
+
+        string = string.toLowerCase();
+        String[] stringsArray = string.split("[\\s,;:/.]+");
+
+        if(string == null){
+            System.out.println("Error - provided string is null.");
+            return null;
+        }
+        else if(string.isEmpty()){
+            System.out.println("Error - provided string is empty.");
+            return null;
+        }
+        else{
+            // Build valid name from user input e.g. "North America"
+            StringBuilder nameSB = new StringBuilder();
+
+            for(int i = 0; i < stringsArray.length; i++){
+
+                // Capitalise first letter of every word
+                String strCamelCase = stringsArray[i].substring(0, 1).toUpperCase() +
+                        stringsArray[i].substring(1).toLowerCase();
+
+                // Concatenate all words together as name
+                nameSB.append(strCamelCase);
+
+                // Add space between each word except last one
+                if(i < stringsArray.length - 1){
+                    nameSB.append(" ");
+                }
+            }
+
+            return nameSB.toString();
+        }
+
+    }
+    /**
      * Convert string into string of lower case letters connected with dash, with the ending "population.md".
      * @param str
      * @return
@@ -242,7 +312,218 @@ public class App {
     }
 
     /**
-     * Access population information on user request.
+     * Get a reports request list.
+     * @return
+     */
+    public ArrayList<String[]> setExtraReports(){
+        ArrayList<String[]> extraReports = new ArrayList<>();
+
+        String[] report1 = {"world"};
+        extraReports.add(report1);
+
+        String[] report2 = {"continent", "north america"};
+        extraReports.add(report2);
+
+        String[] report3 = {"region", "middle east"};
+        extraReports.add(report3);
+
+        String[] report4 = {"country", "united arab emirates"};
+        extraReports.add(report4);
+
+        String[] report5 = {"district", "england", "united kingdom"};
+        extraReports.add(report5);
+
+        String[] report6 = {"city", "berlin", "germany"};
+        extraReports.add(report6);
+
+        return extraReports;
+    }
+
+    /**
+     * Recognise report request command and get associated data.
+     * Use to generate hardcoded reports.
+     * @param request an array of strings for the report to generate
+     */
+    public void manageMenu(String[] request){
+
+        String firstCmdStr = request[0].toLowerCase();
+
+        long population = 0;
+
+        // Handle option selection
+        if(firstCmdStr.equals("world")){
+
+            for(Map.Entry<String, Continent> continentKeyValue : continents.entrySet()) {
+                population += continentKeyValue.getValue().getPopulation();
+            }
+            String data = String.format("World population=%s", population);
+            writeToFile(data, "world-population.md");
+
+        }
+        else{
+
+            // Check if command has more than one argument
+            if(request.length < 2){
+                System.out.println("Not enough arguments to generate reports, please try again.");
+            }
+            else{
+
+                String name = stringToTitleCase(request[1]);
+                String filename = getFilename(name);
+
+                switch (firstCmdStr) {
+
+                    case "continent":
+                        // Check if name exists in the collection
+                        if (!continents.containsKey(name)) {
+                            System.out.println("Continent name not found.");
+                        }
+                        else {
+                            // Get continent's population
+                            population = continents.get(name).getPopulation();
+
+                            // Prepare data to be written to file
+                            String data = String.format("Continent=%s, population=%s", name, population);
+
+                            System.out.println(data);
+                            writeToFile(data, filename);
+                        }
+                        break;
+
+                    case "region":
+                        // Check if name exists in the collection
+                        if (!regions.containsKey(name)) {
+                            System.out.println("Region name not found.");
+                        }
+                        else {
+                            // Get region's population
+                            population = regions.get(name).getPopulation();
+
+                            // Prepare data to be written to file
+                            String data = String.format("Region=%s, population=%s", name, population);
+
+                            System.out.println(data);
+                            writeToFile(data, filename);
+                        }
+                        break;
+
+                    case "country":
+                        // Check if name exists in the collection
+                        if (!countries.containsKey(name)) {
+                            System.out.println("Country name not found.");
+                        }
+                        else {
+                            // Get country's population
+                            population = countries.get(name).getPopulation();
+
+                            // Prepare data to be written to file
+                            String data = String.format("Country=%s, population=%s", name, population);
+
+                            System.out.println(data);
+                            writeToFile(data, filename);
+                        }
+                        break;
+
+                    case "district":
+
+                        if(request.length < 3){
+                            System.out.println("Not enough arguments, please try again.");
+                        }
+                        else{
+
+                            String districtCountryName = stringToTitleCase(request[2]);
+
+                            // Check if country exists in the collection
+                            if (!countries.containsKey(districtCountryName)) {
+                                System.out.println("Country name not found.");
+                                System.out.println(districtCountryName);
+                            }
+                            else {
+                                // Check if country contains a district of provided name
+                                if(!countries.get(districtCountryName).getDistricts().containsKey(name)){
+                                    System.out.println("District name not found.");
+                                }
+                                else{
+                                    // Get a searched district's population from the collection of districts contained
+                                    // in the selected country
+                                    population = countries.get(districtCountryName).getDistricts().get(name).getPopulation();
+
+                                    // Prepare data to be written to file
+                                    String data = String.format("District=%s, Country=%s, population=%s",
+                                            name, districtCountryName, population);
+
+                                    System.out.println(data);
+                                    writeToFile(data, filename);
+                                }
+                            }
+                        }
+
+                        break;
+
+                    case "city":
+
+                        if(request.length < 3){
+                            System.out.println("Not enough arguments, please try again.");
+                        }
+                        else{
+                            String cityCountryName = stringToTitleCase(request[2]);
+
+                            // Check if country exists in the collection
+                            if (!countries.containsKey(cityCountryName)) {
+                                System.out.println("Country name not found.");
+                            }
+                            else {
+
+                                City searchedCity = new City(-1, "", -1);
+
+                                HashMap<String, District> districtsInCountry = countries.get(cityCountryName).getDistricts();
+
+                                // Get city by its name and country
+                                for(Map.Entry<String, District> districtEntry : districtsInCountry.entrySet()){
+
+                                    District district = districtEntry.getValue();
+
+                                    // Search each district's collection of cities if it contains a searched city
+                                    for(Map.Entry<Integer, City> cityEntry : district.getCities().entrySet()){
+                                        City city = cityEntry.getValue();
+                                        if(city.getName().equals(name)){
+                                            searchedCity = city;
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                if(searchedCity.getId() == -1){
+                                    System.out.println("City name not found.");
+                                }
+                                else{
+
+                                    population = searchedCity.getPopulation();
+
+                                    // Prepare data to be written to file
+                                    String data = String.format("City=%s, Country=%s, population=%s",
+                                            name, cityCountryName, population);
+
+                                    System.out.println(data);
+                                    writeToFile(data, filename);
+                                }
+                            }
+                        }
+
+                        break;
+
+                    default:
+                        System.out.println("Report request command not recognised, try again please.");
+                        break;
+                }
+            }
+        }
+
+
+    }
+
+    /**
+     * Access population information on user request in runtime.
      * Produce md file with name and population of the world, continent, region, country, district or city,
      * where name of the searched element is provided by a user.
      * @param dataHolder
@@ -266,7 +547,7 @@ public class App {
 
             String firstCmdStr = commandStrings[0];
 
-            int population = 0;
+            long population = 0;
 
             // Handle option selection
             if(firstCmdStr.equals("e")){
