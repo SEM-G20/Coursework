@@ -7,7 +7,7 @@ public class City {
 
     private int id;
     private String name;
-    private int population;
+    private long population;
     private District district;
     private String code;
     private Country country;
@@ -18,7 +18,7 @@ public class City {
         this.name = name;
     }
     public City(){}
-    public City(int id, String name, int population)
+    public City(int id, String name, long population)
     {
         this.id = id;
         this.name = name;
@@ -34,7 +34,7 @@ public class City {
     public void setCode(Country code) { this.country=code;}
 
 
-    public int getPopulation(){ return population; }
+    public long getPopulation(){ return population; }
 
 
     public District getDistrict(){ return district; }

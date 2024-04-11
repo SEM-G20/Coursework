@@ -11,6 +11,7 @@ public class App {
     private HashMap<String, Continent> continents;
     private HashMap<String, Region> regions;
     private HashMap<String, Country> countries;
+    private HashMap<String, District> districts;
 
 
     /**
@@ -39,11 +40,22 @@ public class App {
         a.continents = dataHolder.getContinents();
         a.regions = dataHolder.getRegions();
         a.countries = dataHolder.getCountries();
+        a.districts = dataHolder.getDistricts();
         ArrayList<String[]> extraReports = a.setExtraReports();
         extraReports.forEach(a::manageMenu);
 
         // Replace those with the line below (45) to enable user report requests in runtime
         //a.providePopulationInfoOnRequest(dataHolder);
+
+        a.countries.forEach((countryName, country) -> {
+            if(countryName.equals("United States")){
+                System.out.println("region=" + countryName);
+                country.getDistricts().forEach((districtName, district) -> {
+                    System.out.println("district=" + districtName + ", population=" + district.getPopulation());
+                });
+                System.out.println(country.getDistricts().size());
+            }
+        });
 
         // Disconnect from the database
         a.disconnect();
@@ -139,7 +151,6 @@ public class App {
                         "'e' to exit the program");
     }
 
-    // no idea how you've produced all reports without writing to file functionality or even calling the methods
     // src: https://www.digitalocean.com/community/tutorials/java-write-to-file
     /**
      * Create and write to md file.
@@ -348,7 +359,7 @@ public class App {
 
         String firstCmdStr = request[0].toLowerCase();
 
-        int population = 0;
+        long population = 0;
 
         // Handle option selection
         if(firstCmdStr.equals("world")){
@@ -547,7 +558,7 @@ public class App {
 
             String firstCmdStr = commandStrings[0];
 
-            int population = 0;
+            long population = 0;
 
             // Handle option selection
             if(firstCmdStr.equals("e")){

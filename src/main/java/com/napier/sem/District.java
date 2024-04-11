@@ -9,7 +9,7 @@ import java.util.Map;
 public class District {
 
     private String name;
-    private int population = 0;
+    private long population = 0;
     private Country country;
     private HashMap<Integer, City> cities = new HashMap<>();
 
@@ -19,7 +19,7 @@ public class District {
     }
 
     public String getName(){ return name; }
-    public int getPopulation(){ return population; }
+    public long getPopulation(){ return population; }
 
     /**
      * Calculate population for whole district.
