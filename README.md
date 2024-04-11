@@ -7,7 +7,8 @@ Develop Branch Status![GitHub Workflow Status (branch)](https://img.shields.io/g
 
 | ID    | Name | Met  | Screenshot |
 |-------|------|------|------------|
-| 1     | All the countries in the world organised by largest population to smallest. | Yes | image |
+| 1     | All the countries in the world organised by largest population to smallest. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/a3afee00-8254-4f55-97d2-c69c0c391ba7)
+ |
 | 2     | All the countries in a continent organised by largest population to smallest. | Yes | image |
 | 3     | All the countries in a region organised by largest population to smallest. | Yes | image |
 | 4     | The top N populated countries in the world where N is provided by the user. | Yes | image |
