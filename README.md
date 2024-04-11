@@ -23,9 +23,9 @@ Develop Branch Status![GitHub Workflow Status (branch)](https://img.shields.io/g
 | 14     | The top N populated cities in a region where N is provided by the user. (N=8, Caribbean)| Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/7c158318-0f4a-44b7-9659-5b87c08c2b4d)|
 | 15     | The top N populated cities in a country where N is provided by the user. (N=8, Spain) | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/39e7cbc0-8aff-441a-bd7a-eff479e7f9d4)|
 | 16     | The top N populated cities in a district where N is provided by the user. (N=3, Aichi) | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/3ac21114-3aac-4019-93fd-2dea0cdef667)|
-| 17    | All the capital cities in the world organised by largest population to smallest. | Yes | image |
-| 18    | All the capital cities in a continent organised by largest population to smallest. | Yes | image |
-| 19    | All the capital cities in a region organised by largest to smallest. | Yes | image |
+| 17    | All the capital cities in the world organised by largest population to smallest. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/56680d6a-100e-4be5-a3ab-20d872e1f5d3)|
+| 18    | All the capital cities in a continent organised by largest population to smallest. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/d0d13d29-7a69-4a79-9236-875879e65b73)|
+| 19    | All the capital cities in a region organised by largest to smallest. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/c3d87b7b-ac57-4f3e-986c-73faa7dca09c)|
 | 20    | The top N populated capital cities in the world where N is provided by the user. | Yes | image |
 | 21    | The top N populated capital cities in a continent where N is provided by the user. | Yes | image |
 | 22    | The top N populated capital cities in a region where N is provided by the user. | Yes | image |
