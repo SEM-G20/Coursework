@@ -9,7 +9,7 @@ import java.util.Map;
 public class Country {
     private String code;
     private String name;
-    private int population;
+    private long population;
     private Continent continent;
     private Region region;
     private HashMap<String, District> districts = new HashMap<>();
@@ -35,7 +35,7 @@ public class Country {
     public void setCode(String code){ this.code = code; }
     public String getName(){ return name; }
     public void setName(String name){ this.name = name;}
-    public int getPopulation(){ return population; }
+    public long getPopulation(){ return population; }
     public void setPopulation(Integer population) { this.population=population; }
     public Continent getContinent(){ return continent; }
     public void setContinent(Continent continent) { this.continent = continent; }

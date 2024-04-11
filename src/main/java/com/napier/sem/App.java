@@ -139,7 +139,6 @@ public class App {
                         "'e' to exit the program");
     }
 
-    // no idea how you've produced all reports without writing to file functionality or even calling the methods
     // src: https://www.digitalocean.com/community/tutorials/java-write-to-file
     /**
      * Create and write to md file.
@@ -349,7 +348,7 @@ public class App {
 
         String firstCmdStr = request[0].toLowerCase();
 
-        int population = 0;
+        long population = 0;
 
         // Handle option selection
         if(firstCmdStr.equals("world")){
@@ -548,7 +547,7 @@ public class App {
 
             String firstCmdStr = commandStrings[0];
 
-            int population = 0;
+            long population = 0;
 
             // Handle option selection
             if(firstCmdStr.equals("e")){
