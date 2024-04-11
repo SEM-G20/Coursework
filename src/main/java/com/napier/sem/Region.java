@@ -1,6 +1,7 @@
 package com.napier.sem;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents a region.
@@ -35,5 +36,26 @@ public class Region {
     public HashMap<String, Country> getCountries(){ return countries; }
     public void addCountry(String name, Country country){
         countries.put(name, country);
+    }
+
+    @Override
+    public String toString(){
+
+        StringBuilder str = new StringBuilder("name=" + name + ", population=" + population +
+                ", continent=" + continent.getName());
+
+        if(countries != null){
+            str.append(", districts=");
+            str.append("(");
+            for(Map.Entry<String, Country> entry : countries.entrySet()){
+                str.append(entry.getKey());
+                str.append(", ");
+            }
+            str.deleteCharAt(str.length() - 1);
+            str.deleteCharAt(str.length() - 1);
+            str.append(")");
+        }
+
+        return str.toString();
     }
 }
