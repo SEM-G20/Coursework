@@ -18,7 +18,7 @@ public class City {
         this.name = name;
     }
     public City(){}
-    public City(int id, String name, int population)
+    public City(int id, String name, long population)
     {
         this.id = id;
         this.name = name;
