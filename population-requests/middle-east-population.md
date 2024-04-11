@@ -1,1 +1,1 @@
-Region=Middle East, population=3101000
+Region=Middle East, population=188380700
