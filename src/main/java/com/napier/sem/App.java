@@ -16,19 +16,36 @@ public class App {
     /**
      * Main method
      */
-    public static void main(String[] args) {
-        // Create new Application and connect to database
+    public static void main(String[] args)
+    {
+        // Creating  an instance of the App class
         App a = new App();
 
-        if (args.length < 1) {
-            a.connect("localhost:33060", 10000);
-        } else {
+        // Connect to the database
+        if(args.length < 1){
+            a.connect("localhost:33060", 30000);
+        }else{
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 
+        // Print a message indicating successful connection
+        System.out.println("Connected!");
 
+        // Load data from database into the app
+        DataHolder dataHolder = a.createDataHolder();
+        dataHolder.loadData();
 
-        // Disconnect from database
+        // Lines 38-42 are used to generate extra reports (hardcoded requests)
+        a.continents = dataHolder.getContinents();
+        a.regions = dataHolder.getRegions();
+        a.countries = dataHolder.getCountries();
+        ArrayList<String[]> extraReports = a.setExtraReports();
+        extraReports.forEach(a::manageMenu);
+
+        // Replace those with the line below (45) to enable user report requests in runtime
+        //a.providePopulationInfoOnRequest(dataHolder);
+
+        // Disconnect from the database
         a.disconnect();
     }
 
@@ -40,6 +57,7 @@ public class App {
      * Connect to the database.
      */
     public void connect(String location, int delay) {
+
         try {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -49,7 +67,6 @@ public class App {
         }
 
         int retries = 10;
-        boolean shouldWait = false;
         for (int i = 0; i < retries; ++i) {
             System.out.println("Connecting to database...");
             try {
@@ -63,7 +80,7 @@ public class App {
                 isConnected = true;
                 break;
             } catch (SQLException sqle) {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
+                System.out.println("Failed to connect to database attempt " +                                  Integer.toString(i));
                 System.out.println(sqle.getMessage());
             } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
