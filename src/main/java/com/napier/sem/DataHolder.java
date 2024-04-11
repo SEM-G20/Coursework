@@ -1461,9 +1461,170 @@ public class DataHolder {
         }
     }
 
+    public ArrayList<Country> peopleInOutCitiesPerCountry()
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Name,SUM(city.Population) AS 'Population in Cities', CONCAT(ROUND(SUM(city.population) / country.population*100 ,2),'%') AS 'Population in Cities (%)', country.population-SUM(city.population) AS 'Population outisde of cities',CONCAT(ROUND(((country.population-SUM(city.population))/country.population)*100,2),'%') AS 'Population outisde of cities (%)',country.population AS 'Population' "
+                            + "FROM city "
+                            + "JOIN country ON country.code = city.CountryCode "
+                            + "GROUP BY country.name, country.population";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+
+                country.setName(rset.getString("Name"));
+
+                country.setPopInCities(rset.getLong("Population in Cities"));
+                country.setPopInCitiesPer(rset.getString("Population in Cities (%)"));
+                country.setPopOutCities(rset.getLong("Population outisde of cities"));
+                country.setPopOutCitiesPer(rset.getString("Population outisde of cities (%)"));
+                country.setPopulation(rset.getInt("Population"));
+                countries.add(country);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |", "Name", "Population In Cities", "Population In Cities (%)", "Population outside of Cities", "Population outside of Cities (%)", "Population"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |", "---", "---", "---", "---", "---", "---"));
 
 
+            // Loop over all employees in the list
+            for (Country i : countries)
+            {
+                String city_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |",
+                                i.getName(), i.getPopInCities(), i.getPopInCitiesPer(), i.getPopOutCities(),i.getPopOutCitiesPer(), i.getPopulation());
+                System.out.println(city_string);
+            }
 
+
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+
+    public ArrayList<Country> peopleInOutCitiesPerContinent()
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.continent, SUM(city.population) AS 'Population in Cities', CONCAT(ROUND(SUM(city.population)/SUM(DISTINCT country.population)*100,2),'%') AS 'Population in Cities (%)',SUM(DISTINCT country.Population)-SUM(city.Population) AS 'Population outisde of cities',CONCAT(ROUND((SUM(DISTINCT country.Population)-SUM(city.Population))/SUM(DISTINCT country.population)*100,2),'%') AS 'Population outisde of cities (%)',SUM(DISTINCT country.population) AS 'Population' "
+                            + "FROM city "
+                            + "JOIN country ON country.code = city.CountryCode "
+                            + "GROUP BY country.continent";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+
+                country.setName(rset.getString("continent"));
+
+                country.setPopInCities(rset.getLong("Population in Cities"));
+                country.setPopInCitiesPer(rset.getString("Population in Cities (%)"));
+                country.setPopOutCities(rset.getLong("Population outisde of cities"));
+                country.setPopOutCitiesPer(rset.getString("Population outisde of cities (%)"));
+                country.setPopulation(rset.getLong("Population"));
+                countries.add(country);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |", "Name", "Population In Cities", "Population In Cities (%)", "Population outside of Cities", "Population outside of Cities (%)", "Population"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |", "---", "---", "---", "---", "---", "---"));
+
+
+            // Loop over all employees in the list
+            for (Country i : countries)
+            {
+                String city_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |",
+                                i.getName(), i.getPopInCities(), i.getPopInCitiesPer(), i.getPopOutCities(),i.getPopOutCitiesPer(), i.getPopulation());
+                System.out.println(city_string);
+            }
+
+
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+
+    public ArrayList<Country> peopleInOutCitiesPerRegion()
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.region, SUM(city.population) AS 'Population in Cities', CONCAT(ROUND(SUM(city.population)/SUM(DISTINCT country.population)*100,2),'%') AS 'Population in Cities (%)',SUM(DISTINCT country.Population)-SUM(city.Population) AS 'Population outisde of cities',CONCAT(ROUND((SUM(DISTINCT country.Population)-SUM(city.Population))/SUM(DISTINCT country.population)*100,2),'%') AS 'Population outisde of cities (%)',SUM(DISTINCT country.population) AS 'Population' "
+                            + "FROM city "
+                            + "JOIN country ON country.code = city.CountryCode "
+                            + "GROUP BY country.region";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+
+                country.setName(rset.getString("region"));
+
+                country.setPopInCities(rset.getLong("Population in Cities"));
+                country.setPopInCitiesPer(rset.getString("Population in Cities (%)"));
+                country.setPopOutCities(rset.getLong("Population outisde of cities"));
+                country.setPopOutCitiesPer(rset.getString("Population outisde of cities (%)"));
+                country.setPopulation(rset.getLong("Population"));
+                countries.add(country);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |", "Name", "Population In Cities", "Population In Cities (%)", "Population outside of Cities", "Population outside of Cities (%)", "Population"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |", "---", "---", "---", "---", "---", "---"));
+
+
+            // Loop over all employees in the list
+            for (Country i : countries)
+            {
+                String city_string =
+                        String.format("| %-4s | %-20s | %-10s | %-10s | %-10s | %-10s |",
+                                i.getName(), i.getPopInCities(), i.getPopInCitiesPer(), i.getPopOutCities(),i.getPopOutCitiesPer(), i.getPopulation());
+                System.out.println(city_string);
+            }
+
+
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
 
 }
 
