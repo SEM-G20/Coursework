@@ -31,6 +31,7 @@ public class DataHolderIntegrationTests {
         assertFalse(dataHolder.getCountries().isEmpty());
         assertFalse(dataHolder.getDistricts().isEmpty());
         assertFalse(dataHolder.getCities().isEmpty());
+
     }
 
     /**
@@ -173,4 +174,303 @@ public class DataHolderIntegrationTests {
 
         }
     }
+
+    @Test
+    public void testCountriesByPop(){
+        ArrayList<Country> countries = dataHolder.countriesByPop();
+
+        Country country = countries.get(0);
+
+        assertEquals(country.getCode(),"CHN");
+        assertEquals(country.getName(),"China");
+        assertEquals(country.getContinent().getName(),"Asia");
+        assertEquals(country.getRegion().getName(),"Eastern Asia");
+        assertEquals(country.getPopulation(),1277558000);
+        assertEquals(country.getCapital().getName(),"Peking");
+    }
+
+
+
+
+
+    @Test
+    public void testCapitalCitiesInContinent() {
+
+        ArrayList<City> cities = dataHolder.capitalCitiesInContinentByPop("Africa");
+
+        City city = cities.get(0);
+
+        assertEquals(city.getName(),"Cairo");
+        assertEquals(city.getCountry().getName(),"Egypt");
+        assertEquals(city.getPopulation(),6789479);
+    }
+    @Test
+    public void testCapitalCitiesInRegion() {
+
+        ArrayList<City> cities = dataHolder.capitalCitiesInRegionByPop("Caribbean");
+
+        City city = cities.get(0);
+
+        assertEquals(city.getName(),"La Habana");
+        assertEquals(city.getCountry().getName(),"Cuba");
+        assertEquals(city.getPopulation(),2256000);
+    }
+
+    @Test
+    public void testCapitalCitiesInWorld() {
+
+        ArrayList<City> cities = dataHolder.capitalCitiesByPop();
+
+        City city = cities.get(0);
+
+        assertEquals(city.getName(),"Seoul");
+        assertEquals(city.getCountry().getName(),"South Korea");
+        assertEquals(city.getPopulation(),9981619);
+    }
+
+    @Test
+    public void testCitiesInWorld() {
+
+        ArrayList<City> cities = dataHolder.citiesByPop();
+
+        City city = cities.get(0);
+
+        assertEquals(city.getName(),"Mumbai (Bombay)");
+        assertEquals(city.getCountry().getName(),"India");
+        assertEquals(city.getDistrict().getName(),"Maharashtra");
+        assertEquals(city.getPopulation(),10500000);
+    }
+
+    @Test
+    public void testCitiesInContinent() {
+
+        ArrayList<City> cities = dataHolder.citiesInContinentByPop("Europe");
+
+        City city = cities.get(0);
+
+        assertEquals(city.getName(),"Moscow");
+        assertEquals(city.getCountry().getName(),"Russian Federation");
+        assertEquals(city.getDistrict().getName(),"Moscow (City)");
+        assertEquals(city.getPopulation(),8389200);
+    }
+
+    @Test
+    public void testCitiesInRegion() {
+
+        ArrayList<City> cities = dataHolder.citiesInRegionByPop("Caribbean");
+
+        City city = cities.get(0);
+
+        assertEquals(city.getName(),"La Habana");
+        assertEquals(city.getCountry().getName(),"Cuba");
+        assertEquals(city.getDistrict().getName(),"La Habana");
+        assertEquals(city.getPopulation(),2256000);
+    }
+
+    @Test
+    public void testCitiesInCountry() {
+
+        ArrayList<City> cities = dataHolder.citiesInCountryByPop("Spain");
+
+        City city = cities.get(0);
+
+        assertEquals(city.getName(),"Madrid");
+        assertEquals(city.getCountry().getName(),"Spain");
+        assertEquals(city.getDistrict().getName(),"Madrid");
+        assertEquals(city.getPopulation(),2879052);
+    }
+
+    @Test
+    public void testCitiesInDistrict() {
+
+        ArrayList<City> cities = dataHolder.citiesInDistrictByPop("Aichi");
+
+        City city = cities.get(0);
+
+        assertEquals(city.getName(),"Nagoya");
+        assertEquals(city.getCountry().getName(),"Japan");
+        assertEquals(city.getDistrict().getName(),"Aichi");
+        assertEquals(city.getPopulation(),2154376);
+    }
+
+    @Test
+    public void testCountriesInContinent() {
+
+        ArrayList<Country> countries = dataHolder.countriesByPopInContinent("Europe");
+
+        Country country = countries.get(0);
+
+        assertEquals(country.getCode(),"RUS");
+        assertEquals(country.getName(),"Russian Federation");
+        assertEquals(country.getContinent().getName(),"Europe");
+        assertEquals(country.getRegion().getName(),"Eastern Europe");
+        assertEquals(country.getPopulation(),146934000);
+        assertEquals(country.getCapital().getName(),"Moscow");
+
+    }
+
+    @Test
+    public void testCountriesInRegion() {
+
+        ArrayList<Country> countries = dataHolder.countriesByPopInRegion("Western Europe");
+
+        Country country = countries.get(0);
+
+        assertEquals(country.getCode(),"DEU");
+        assertEquals(country.getName(),"Germany");
+        assertEquals(country.getContinent().getName(),"Europe");
+        assertEquals(country.getPopulation(),82164700);
+        assertEquals(country.getCapital().getName(),"Berlin");
+
+    }
+
+
+    @Test
+    public void testNCapitalsInContinent() {
+
+        ArrayList<City> cities = dataHolder.NcapitalCitiesInContinentByPop("Africa",5);
+
+        City city = cities.get(0);
+
+        assertEquals(city.getName(),"Cairo");
+        assertEquals(city.getCountry().getName(),"Egypt");
+        assertEquals(city.getPopulation(),6789479);
+    }
+
+    @Test
+    public void testNCapitalsInWorld() {
+
+        ArrayList<City> cities = dataHolder.NcapitalCitiesByPop(5);
+
+        City city = cities.get(0);
+
+        assertEquals(city.getName(),"Seoul");
+        assertEquals(city.getCountry().getName(),"South Korea");
+        assertEquals(city.getPopulation(),9981619);
+    }
+
+    @Test
+    public void testNCapitalsInRegion() {
+
+        ArrayList<City> cities = dataHolder.NcapitalCitiesInRegionByPop("Caribbean",5);
+
+        City city = cities.get(0);
+
+        assertEquals(city.getName(),"La Habana");
+        assertEquals(city.getCountry().getName(),"Cuba");
+        assertEquals(city.getPopulation(),2256000);
+    }
+
+    @Test
+    public void testNCitiesInWorld() {
+
+        ArrayList<City> cities = dataHolder.NcitiesByPop(5);
+
+        City city = cities.get(0);
+
+        assertEquals(city.getName(),"Mumbai (Bombay)");
+        assertEquals(city.getCountry().getName(),"India");
+        assertEquals(city.getDistrict().getName(),"Maharashtra");
+        assertEquals(city.getPopulation(),10500000);
+    }
+
+    @Test
+    public void testNCitiesInContinent() {
+
+        ArrayList<City> cities = dataHolder.NcitiesInContinentByPop("Europe",5);
+
+        City city = cities.get(0);
+
+        assertEquals(city.getName(),"Moscow");
+        assertEquals(city.getCountry().getName(),"Russian Federation");
+        assertEquals(city.getDistrict().getName(),"Moscow (City)");
+        assertEquals(city.getPopulation(),8389200);
+    }
+
+    @Test
+    public void testNCitiesInRegion() {
+
+        ArrayList<City> cities = dataHolder.NcitiesInRegionByPop("Caribbean",5);
+
+        City city = cities.get(0);
+
+        assertEquals(city.getName(),"La Habana");
+        assertEquals(city.getCountry().getName(),"Cuba");
+        assertEquals(city.getDistrict().getName(),"La Habana");
+        assertEquals(city.getPopulation(),2256000);
+    }
+
+    @Test
+    public void testNCitiesInCountry() {
+
+        ArrayList<City> cities = dataHolder.NcitiesInCountryByPop("Spain",5);
+
+        City city = cities.get(0);
+
+        assertEquals(city.getName(),"Madrid");
+        assertEquals(city.getCountry().getName(),"Spain");
+        assertEquals(city.getDistrict().getName(),"Madrid");
+        assertEquals(city.getPopulation(),2879052);
+    }
+
+    @Test
+    public void testNCitiesInDistrict() {
+
+        ArrayList<City> cities = dataHolder.NcitiesInDistrictByPop("Aichi",3);
+
+        City city = cities.get(0);
+
+        assertEquals(city.getName(),"Nagoya");
+        assertEquals(city.getCountry().getName(),"Japan");
+        assertEquals(city.getDistrict().getName(),"Aichi");
+        assertEquals(city.getPopulation(),2154376);
+    }
+
+    @Test
+    public void testNCountriesInContinent() {
+
+        ArrayList<Country> countries = dataHolder.NcountriesByPopInContinent("Europe",5);
+
+        Country country = countries.get(0);
+
+        assertEquals(country.getCode(),"RUS");
+        assertEquals(country.getName(),"Russian Federation");
+        assertEquals(country.getContinent().getName(),"Europe");
+        assertEquals(country.getRegion().getName(),"Eastern Europe");
+        assertEquals(country.getPopulation(),146934000);
+        assertEquals(country.getCapital().getName(),"Moscow");
+
+    }
+
+    @Test
+    public void testNCountriesInWorld() {
+
+        ArrayList<Country> countries = dataHolder.NcountriesByPop(5);
+
+        Country country = countries.get(0);
+
+        assertEquals(country.getCode(),"CHN");
+        assertEquals(country.getName(),"China");
+        assertEquals(country.getContinent().getName(),"Asia");
+        assertEquals(country.getRegion().getName(),"Eastern Asia");
+        assertEquals(country.getPopulation(),1277558000);
+        assertEquals(country.getCapital().getName(),"Peking");
+
+    }
+
+    @Test
+    public void testNCountriesInRegion() {
+
+        ArrayList<Country> countries = dataHolder.NcountriesByPopInRegion("Western Europe",4);
+
+        Country country = countries.get(0);
+
+        assertEquals(country.getCode(),"DEU");
+        assertEquals(country.getName(),"Germany");
+        assertEquals(country.getContinent().getName(),"Europe");
+        assertEquals(country.getPopulation(),82164700);
+        assertEquals(country.getCapital().getName(),"Berlin");
+
+    }
+
 }
