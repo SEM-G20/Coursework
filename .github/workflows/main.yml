@@ -49,7 +49,7 @@ jobs:
           directory: ./target/site/jacoco
           flags: Integration Tests # optional
           verbose: true # optional (default = false)
-          slug: <GitHub username>/<repository name>
+          slug: mhannah04/SEM-G20
   build:
     name: Build and Start Using docker-compose
     runs-on: ubuntu-20.04
