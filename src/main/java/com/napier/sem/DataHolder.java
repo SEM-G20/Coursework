@@ -1626,5 +1626,62 @@ public class DataHolder {
         }
     }
 
+    public ArrayList<Languages> langaugesByPop()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+
+            String strSelect =
+                    "SELECT language,SUM(speakers) AS speakers,CONCAT(ROUND(SUM(speakers) / (SELECT SUM(Population) FROM country) * 100,2),'%') AS Percentage_speakers " +
+                            "FROM (SELECT Language, c.Population * Percentage / 100 AS speakers " +
+                            "FROM countrylanguage " +
+                            "JOIN country c ON countrylanguage.CountryCode = c.Code " +
+                            "WHERE countrylanguage.Language IN ('Chinese', 'English', 'Hindi', 'Arabic', 'Spanish')) AS subquery " +
+                            "GROUP BY Language " +
+                            "ORDER BY speakers DESC";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Languages> languages = new ArrayList<Languages>();
+
+            while (rset.next())
+            {
+                Languages language = new Languages();
+
+                language.setPercentageOfPopulation(rset.getString("Percentage_speakers"));
+                language.setLanguageName(rset.getString("Language"));
+                language.setPopulation(rset.getInt("speakers"));
+
+                languages.add(language);
+            }
+
+            System.out.println(String.format("| %-4s | %-20s | %-10s |", "Language", "World Speakers %", "Speakers"));
+            System.out.println(String.format("| %-4s | %-20s | %-10s |", "---", "---", "---"));
+
+            // Loop over all employees in the list
+            for (Languages i : languages)
+            {
+                String city_string =
+                        String.format("| %-4s | %-20s | %-10s |",
+                                i.getLanguageName(), i.getPercentageOfPopulation(), i.getPopulation());
+                System.out.println(city_string);
+            }
+
+
+
+            return languages;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+
 }
 
