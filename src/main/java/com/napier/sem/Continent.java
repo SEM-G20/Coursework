@@ -4,7 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents a continent.
+ * Continent object is an object created by taking data from the world.sql database and processing it
+ * Contains different variable to represent specific data in regards to different continents
+ * Holds name and population
+ * Makes use of getters and setters to get and set these values
+ * Used in multiple method within dataHolder, for example countryiesByPop, countriesByPopInContinent
  */
 public class Continent {
     private String name;

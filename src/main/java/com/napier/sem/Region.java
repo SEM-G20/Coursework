@@ -4,7 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents a region.
+ * Region object is an object created by taking data from the world.sql database and processing it
+ * Contains different variable to represent specific data in regards to the region
+ * Holds name, population continent values
+ * Makes use of getters and setters to get name, population and continent values
+ * Includes toString method to print region
+ * Used in multiple method within dataHolder, for example countryiesByPop, countriesByPopInContinent
  */
 public class Region {
     private String name;

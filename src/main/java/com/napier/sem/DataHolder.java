@@ -9,7 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Holds data with objects created from the database data.
+ * DataHolder class holds data with objects created from the database data.
+ * Each report generating method is stored here
+ * Hashmaps are created for data storage
  */
 public class DataHolder {
 
