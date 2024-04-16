@@ -4,8 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents a country.
+ * Country object is an object created by taking data from the world.sql database and processing it
+ * Contains different variable to represent specific data in regards to different countries
+ * Holds country code, country name, country population, country continent, country region,
+ * country capital, country mainLanguage and country population in and out of cities information
+ * Makes use of getters and setters to get and set all of these values
+ * Used in multiple method within dataHolder, for example countryiesByPop, countriesByPopInContinent
  */
+
 public class Country {
     private String code;
     private String name;

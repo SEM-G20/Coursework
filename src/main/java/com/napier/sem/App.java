@@ -6,6 +6,12 @@ import java.nio.file.Paths;
 import java.sql.*;
 import java.util.*;
 
+/**
+ * App class contains connection and disconnection methods to connect and disconnect from database
+ * Creates a DataHolder object called dataholder so that any dataholder methods can be used to generate reports
+ * HashMaps used for data storage
+ *
+**/
 public class App {
 
     private HashMap<String, Continent> continents;
@@ -42,8 +48,7 @@ public class App {
         ArrayList<String[]> extraReports = a.setExtraReports();
         extraReports.forEach(a::manageMenu);
 
-        // Replace those with the line below (45) to enable user report requests in runtime
-        //a.providePopulationInfoOnRequest(dataHolder);
+
 
         // Disconnect from the database
         a.disconnect();
