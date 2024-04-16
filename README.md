@@ -29,13 +29,13 @@ Develop Branch Status![GitHub Workflow Status (branch)](https://img.shields.io/g
 | 20    | The top N populated capital cities in the world where N is provided by the user. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/8f0948ce-dc00-4a3d-9abc-1085ddf1ac83)|
 | 21    | The top N populated capital cities in a continent where N is provided by the user. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/35ef7dbc-6ebc-422f-920b-0b1b9453d2aa)|
 | 22    | The top N populated capital cities in a region where N is provided by the user. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/61bc7046-20b7-47e6-b4d7-96008681d686)|
-| 23    | The population of people, people living in cities, and people not living in cities in each continent. | Yes | image |
-| 24    | The population of people, people living in cities, and people not living in cities in each region. | Yes | image |
-| 25    | The population of people, people living in cities, and people not living in cities in each country. | Yes | image |
+| 23    | The population of people, people living in cities, and people not living in cities in each continent. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/89ba3542-2f45-47e6-a7f2-c76023b1d767)|
+| 24    | The population of people, people living in cities, and people not living in cities in each region. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/95fe9b8f-3284-48d5-9fdd-bef2cf521444)|
+| 25    | The population of people, people living in cities, and people not living in cities in each country. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/c78b4560-4dbb-4860-af18-361712400583)|
 | 26    | The population of the world | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/9b040d6f-d87d-4d43-ae71-38b86257071c)|
 | 27    | The population of a continent | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/254c7cd7-8288-4744-b19c-021e1d3a8df2)|
 | 28    | The population of a region. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/fb035b4c-f4c8-4ba9-87df-4bf8515e8a1c)|
 | 29    | The population of a country. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/84bfa2e4-686a-4356-8c81-35831e2619d9)|
 | 30    | The population of a district. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/15aed044-47d7-4d00-b61f-be7a355137e2)|
 | 31    | The population of a city. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/80728b4f-83c8-423b-9022-4eb23b1bfdc7)|
-| 32    | The number of people who speak Chinese, English, Hindi, Spanish or Arabic | Yes | image |
+| 32    | The number of people who speak Chinese, English, Hindi, Spanish or Arabic | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/f1f60fe6-d54f-458f-a431-4a3e44cbb0a6)|
