@@ -1,7 +1,11 @@
 package com.napier.sem;
 
 /**
- * Represents a city.
+ * City object is an object created by taking data from the world.sql database and processing it
+ * Contains different variable to represent specific data in regards to different cities
+ * Holds city id, city name, city population information
+ * Makes use of getters and setters to get and set all of these values
+ * Used in multiple method within dataHolder, for example citiesByPop, citiesInContinentByPop
  */
 public class City {
 
@@ -9,7 +13,6 @@ public class City {
     private String name;
     private int population;
     private District district;
-    private String code;
     private Country country;
 
     public City(int id){this.id=id;}
@@ -26,7 +29,6 @@ public class City {
     }
     public int getId(){ return id; }
     public String getName(){ return name; }
-    public String getCode(){return code;}
 
     public void setName(String name){ this.name = name; }
 
