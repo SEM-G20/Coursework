@@ -1,6 +1,7 @@
 package com.napier.sem;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents a district.
@@ -35,4 +36,25 @@ public class District {
     public void setCountry(Country country) { this.country = country; }
     public HashMap<Integer, City> getCities(){ return cities; }
     public void addCity(int cityID, City city){ cities.put(cityID, city); }
+
+    @Override
+    public String toString(){
+
+        StringBuilder str = new StringBuilder("name=" + name + ", population=" + population +
+                ", country=" + country.getName());
+
+        if(cities != null){
+            str.append(", districts=");
+            str.append("(");
+            for(Map.Entry<Integer, City> entry : cities.entrySet()){
+                str.append(entry.getValue().getName());
+                str.append(", ");
+            }
+            str.deleteCharAt(str.length() - 1);
+            str.deleteCharAt(str.length() - 1);
+            str.append(")");
+        }
+
+        return str.toString();
+    }
 }
