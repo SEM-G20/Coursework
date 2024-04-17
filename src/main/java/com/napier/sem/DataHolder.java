@@ -1674,8 +1674,6 @@ public class DataHolder {
                 System.out.println(city_string);
             }
 
-
-
             return languages;
         }
         catch (Exception e)
@@ -1685,6 +1683,11 @@ public class DataHolder {
             return null;
         }
     }
+
+
+
+
+
 
 }
 
