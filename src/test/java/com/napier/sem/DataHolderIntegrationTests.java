@@ -473,4 +473,68 @@ public class DataHolderIntegrationTests {
 
     }
 
+    @Test
+    public void testGetWorldPop() {
+
+        ArrayList<Country> countries = dataHolder.getWorldPop();
+
+        Country country = countries.get(0);
+
+        assertEquals(country.getName(),"World");
+        assertEquals(country.getPopulation(),6078749450L);
+
+    }
+
+    @Test
+    public void testGetRegionPop() {
+        ArrayList<Country> countries = dataHolder.getRegionPop("Caribbean");
+
+        Country country = countries.get(0);
+
+        assertEquals(country.getRegion().getName(),"Caribbean");
+        assertEquals(country.getPopulation(),38140000);
+    }
+
+    @Test
+    public void testGetDistrictPop() {
+        ArrayList<City> cities = dataHolder.getDistricPop("Galicia");
+
+        City city = cities.get(0);
+
+        assertEquals(city.getDistrict().getName(),"Galicia");
+        assertEquals(city.getPopulation(),729937);
+    }
+
+    @Test
+    public void testGetCountryPop() {
+        ArrayList<Country> countries = dataHolder.getCountryPop("Albania");
+
+        Country country = countries.get(0);
+
+        assertEquals(country.getName(),"Albania");
+        assertEquals(country.getPopulation(),3401200);
+    }
+
+    @Test
+    public void testGetContinentPop() {
+        ArrayList<Country> countries = dataHolder.getContinentPop("Asia");
+
+        Country country = countries.get(0);
+
+        assertEquals(country.getContinent().getName(),"Asia");
+        assertEquals(country.getPopulation(),3705025700L);
+    }
+
+    @Test
+    public void testGetCityPop() {
+        ArrayList<City> cities = dataHolder.getCityPop("Aba");
+
+        City city = cities.get(0);
+
+        assertEquals(city.getName(),"Aba");
+        assertEquals(city.getPopulation(),298900);
+    }
+
+
+
 }

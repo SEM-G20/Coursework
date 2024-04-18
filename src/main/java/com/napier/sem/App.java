@@ -41,12 +41,15 @@ public class App {
         DataHolder dataHolder = a.createDataHolder();
         dataHolder.loadData();
 
-        // Lines 38-42 are used to generate extra reports (hardcoded requests)
-        a.continents = dataHolder.getContinents();
-        a.regions = dataHolder.getRegions();
-        a.countries = dataHolder.getCountries();
-        ArrayList<String[]> extraReports = a.setExtraReports();
-        extraReports.forEach(a::manageMenu);
+
+
+        dataHolder.getWorldPop();
+
+
+        dataHolder.getRegionPop("Caribbean");
+
+
+        dataHolder.getDistricPop("Galicia");
 
 
 
