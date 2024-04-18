@@ -41,5 +41,5 @@ Codecov coverage [![codecov](https://codecov.io/github/SEM-G20/Coursework/graph/
 | 28    | The population of a region. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/fb035b4c-f4c8-4ba9-87df-4bf8515e8a1c)|
 | 29    | The population of a country. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/84bfa2e4-686a-4356-8c81-35831e2619d9)|
 | 30    | The population of a district. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/15aed044-47d7-4d00-b61f-be7a355137e2)|
-| 31    | The population of a city. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/80728b4f-83c8-423b-9022-4eb23b1bfdc7)|
+| 31    | The population of a city. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/1b87f7fe-0ec1-441e-86a9-d81011740122)|
 | 32    | The number of people who speak Chinese, English, Hindi, Spanish or Arabic | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/f1f60fe6-d54f-458f-a431-4a3e44cbb0a6)|
