@@ -36,10 +36,10 @@ Codecov coverage [![codecov](https://codecov.io/github/SEM-G20/Coursework/graph/
 | 23    | The population of people, people living in cities, and people not living in cities in each continent. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/89ba3542-2f45-47e6-a7f2-c76023b1d767)|
 | 24    | The population of people, people living in cities, and people not living in cities in each region. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/95fe9b8f-3284-48d5-9fdd-bef2cf521444)|
 | 25    | The population of people, people living in cities, and people not living in cities in each country. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/c78b4560-4dbb-4860-af18-361712400583)|
-| 26    | The population of the world | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/9b040d6f-d87d-4d43-ae71-38b86257071c)|
-| 27    | The population of a continent | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/254c7cd7-8288-4744-b19c-021e1d3a8df2)|
-| 28    | The population of a region. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/fb035b4c-f4c8-4ba9-87df-4bf8515e8a1c)|
-| 29    | The population of a country. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/84bfa2e4-686a-4356-8c81-35831e2619d9)|
-| 30    | The population of a district. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/15aed044-47d7-4d00-b61f-be7a355137e2)|
+| 26    | The population of the world | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157692196/0bcfed42-07f6-4e79-bfbb-447fe910e147)|
+| 27    | The population of a continent | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157692196/152c38d8-fa39-4c1c-a218-7c5c92289df3)|
+| 28    | The population of a region. | Yes |![image](https://github.com/SEM-G20/Coursework/assets/157692196/3128ec57-6bfb-4335-b463-0119ceb32e58)|
+| 29    | The population of a country. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157692196/3bf0dd05-9034-4c66-88fb-6e0f8c2f7536)|
+| 30    | The population of a district. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157692196/ce3e5549-634f-4585-a9ee-7f7ba131f0a1)|
 | 31    | The population of a city. | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/1b87f7fe-0ec1-441e-86a9-d81011740122)|
 | 32    | The number of people who speak Chinese, English, Hindi, Spanish or Arabic | Yes | ![image](https://github.com/SEM-G20/Coursework/assets/157507841/f1f60fe6-d54f-458f-a431-4a3e44cbb0a6)|
