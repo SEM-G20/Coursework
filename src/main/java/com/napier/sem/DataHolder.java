@@ -1684,7 +1684,284 @@ public class DataHolder {
         }
     }
 
+    public ArrayList<Country> getWorldPop()
+    {
 
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT SUM(population) as total_population, 'World' AS Place "
+                            + "FROM country";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.setPopulation(rset.getLong("total_population"));
+                country.setName(rset.getString("Place"));
+                countries.add(country);
+            }
+
+            System.out.println(String.format("| %-20s | %-20s |", "Place", "Population"));
+            System.out.println(String.format("| %-2s | %-20s |", "---", "---"));
+
+            // Loop over all employees in the list
+            for (Country i : countries)
+            {
+                String country_string =
+                        String.format("| %-20s | %-20s |",
+                                i.getName(), i.getPopulation());
+                System.out.println(country_string);
+            }
+
+
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+            return null;
+        }
+    }
+    public ArrayList<Country> getContinentPop(String reqContinent)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT SUM(population) as total_population, country.Continent "
+                            + "FROM country "
+                            + "WHERE Continent='" + reqContinent + "'";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.setContinent(new Continent((rset.getString("Country.Continent"))));
+                country.setPopulation(rset.getLong("total_population"));
+                countries.add(country);
+            }
+
+            System.out.println(String.format("| %-20s | %-20s |", "Continent", "Population"));
+            System.out.println(String.format("| %-2s | %-20s |", "---", "---"));
+
+            // Loop over all employees in the list
+            for (Country i : countries)
+            {
+                String country_string =
+                        String.format("| %-20s | %-20s |",
+                                i.getContinent().getName(), i.getPopulation());
+                System.out.println(country_string);
+            }
+
+
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+            return null;
+        }
+    }
+    public ArrayList<Country> getRegionPop(String reqRegion)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT SUM(population) as total_population, country.Region "
+                            + "FROM country "
+                            + "WHERE Region='" + reqRegion + "'";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.setRegion(new Region((rset.getString("Country.Region"))));
+                country.setPopulation(rset.getLong("total_population"));
+                countries.add(country);
+            }
+
+            System.out.println(String.format("| %-20s | %-20s |", "Region", "Population"));
+            System.out.println(String.format("| %-2s | %-20s |", "---", "---"));
+
+            // Loop over all employees in the list
+            for (Country i : countries)
+            {
+                String country_string =
+                        String.format("| %-20s | %-20s |",
+                                i.getRegion().getName(), i.getPopulation());
+                System.out.println(country_string);
+            }
+
+
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+            return null;
+        }
+    }
+
+    public ArrayList<Country> getCountryPop(String reqCountry)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT SUM(population) as total_population, country.Name "
+                            + "FROM country "
+                            + "WHERE Name='" + reqCountry + "'";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.setName(rset.getString("Name"));
+                country.setPopulation(rset.getLong("total_population"));
+                countries.add(country);
+            }
+
+            System.out.println(String.format("| %-20s | %-20s |", "Country", "Population"));
+            System.out.println(String.format("| %-2s | %-20s |", "---", "---"));
+
+            // Loop over all employees in the list
+            for (Country i : countries)
+            {
+                String country_string =
+                        String.format("| %-20s | %-20s |",
+                                i.getName(), i.getPopulation());
+                System.out.println(country_string);
+            }
+
+
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+            return null;
+        }
+    }
+
+    public ArrayList<City> getDistricPop(String reqDistrict)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT SUM(population) as total_population, city.District "
+                            + "FROM city "
+                            + "WHERE District='" + reqDistrict + "'";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next())
+            {
+                City city = new City();
+                city.setDistrict(new District((rset.getString("District"))));
+                city.setPopulation(rset.getInt("total_population"));
+                cities.add(city);
+            }
+
+            System.out.println(String.format("| %-20s | %-20s |", "District", "Population"));
+            System.out.println(String.format("| %-2s | %-20s |", "---", "---"));
+
+            // Loop over all employees in the list
+            for (City i : cities)
+            {
+                String country_string =
+                        String.format("| %-20s | %-20s |",
+                                i.getDistrict().getName(), i.getPopulation());
+                System.out.println(country_string);
+            }
+
+
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+            return null;
+        }
+    }
+
+    public ArrayList<City> getCityPop(String reqCity)
+    {
+
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT SUM(population) as total_population, city.Name "
+                            + "FROM city "
+                            + "WHERE Name='" + reqCity + "'";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next())
+            {
+                City city = new City();
+                city.setName(rset.getString("Name"));
+                city.setPopulation(rset.getInt("total_population"));
+                cities.add(city);
+            }
+
+            System.out.println(String.format("| %-20s | %-20s |", "Name", "Population"));
+            System.out.println(String.format("| %-2s | %-20s |", "---", "---"));
+
+            // Loop over all employees in the list
+            for (City i : cities)
+            {
+                String country_string =
+                        String.format("| %-20s | %-20s |",
+                                i.getName(), i.getPopulation());
+                System.out.println(country_string);
+            }
+
+
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+            return null;
+        }
+    }
 
 
 

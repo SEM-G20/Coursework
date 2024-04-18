@@ -6,6 +6,8 @@ Master Build Status ![GitHub Workflow Status (branch)](https://img.shields.io/gi
 
 Develop Branch Status![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/SEM-G20/coursework/main.yml?branch=develop)
 
+Codecov coverage [![codecov](https://codecov.io/github/SEM-G20/Coursework/graph/badge.svg?token=45QGIP90MV)](https://codecov.io/github/SEM-G20/Coursework)
+
 
 | ID    | Name | Met  | Screenshot |
 |-------|------|------|------------|
