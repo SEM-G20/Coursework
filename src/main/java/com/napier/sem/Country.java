@@ -46,7 +46,7 @@ public class Country {
         this.name = name;
     }
 
-    public Country(String name, int population)
+    public Country(String name, long population)
     {
         this.name = name;
         this.population = population;

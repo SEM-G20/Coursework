@@ -76,7 +76,7 @@ public class DataHolder {
 
                 // Get country basic details
                 String countryName = rset.getString("country.name");
-                int countryPopulation = rset.getInt("country.population");
+                long countryPopulation = rset.getLong("country.population");
                 String countryCapital = rset.getString("country.capital");
                 // Get country languages details
                 String countryLanguage = rset.getString("countrylanguage.language");
@@ -89,7 +89,7 @@ public class DataHolder {
                 // Get city basic details
                 int cityID = rset.getInt("city.id");
                 String cityName = rset.getString("city.name");
-                int cityPopulation = rset.getInt("city.population");
+                long cityPopulation = rset.getLong("city.population");
 
 
                 // Catch existing objects, or create new ones and save to the main HashMap
@@ -183,7 +183,7 @@ public class DataHolder {
      * @param region that country is assigned to
      * @return new or existing Country object
      */
-    private Country getCountry(String name, int population, Continent continent, Region region){
+    private Country getCountry(String name, long population, Continent continent, Region region){
 
         Country country;
 
@@ -227,7 +227,7 @@ public class DataHolder {
      * @param district that city is assigned to
      * @return new or existing District object
      */
-    private City getCity(int id, String name, int population, Country country, District district){
+    private City getCity(int id, String name, long population, Country country, District district){
 
         City city;
 

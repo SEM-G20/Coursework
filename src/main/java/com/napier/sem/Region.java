@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class Region {
     private String name;
-    private int population = 0;
+    private long population = 0;
     private Continent continent;
     private HashMap<String, Country> countries = new HashMap<>();
 
@@ -23,7 +23,7 @@ public class Region {
     }
 
     public String getName(){ return name; }
-    public int getPopulation(){ return population; }
+    public long getPopulation(){ return population; }
 
     /**
      * Calculate population for whole region.
